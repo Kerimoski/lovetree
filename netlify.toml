@@ -1,5 +1,5 @@
    [build]
-     command = "npm install next@13.5.6 && next build"
+     command = "npm install next@13.5.6 && npm install prisma --no-save && npx prisma generate && next build"
      publish = ".next"
    
    [[plugins]]
@@ -9,5 +9,5 @@
      DATABASE_URL = "postgresql://postgres:xthZEILEuEwybAIgKHDkQImHeueCbAVk@yamanote.proxy.rlwy.net:28084/railway"
      NEXTAUTH_URL = "https://jazzy-salamander-509fc3.netlify.app"
      NEXTAUTH_SECRET = "rastgelebirdeger123456789"
-     NODE_VERSION = "18.17.0"
+     NODE_VERSION = "18.18.0"
      NEXT_TELEMETRY_DISABLED = "1"
