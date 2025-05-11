@@ -4,7 +4,7 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '@/app/auth/options';
 
 // Farklı işlemlerin XP değerleri
-export const XP_VALUES = {
+const XP_VALUES = {
   MEMORY: 15,       // Anı eklemek
   NOTE: 10,         // Not eklemek
   LOGIN: 5,         // Giriş yapmak
