@@ -7,6 +7,7 @@ const nextConfig = {
   
   // Yüklenen görsellerin görüntülenmesi için Content Security Policy'yi yapılandırma
   images: {
+    unoptimized: true, // Netlify için gerekli
     remotePatterns: [
       {
         protocol: 'http',
@@ -51,6 +52,12 @@ const nextConfig = {
       }
     ],
   },
+  output: 'standalone', // Netlify için optimize edilmiş çıktı
+  swcMinify: true,
+  reactStrictMode: true,
+  // Netlify için yapılandırma
+  trailingSlash: true,
+  poweredByHeader: false,
 };
 
 module.exports = nextConfig;
