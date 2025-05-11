@@ -1,0 +1,11 @@
+   [build]
+     command = "next build"
+     publish = ".next"
+   
+   [[plugins]]
+     package = "@netlify/plugin-nextjs"
+   
+   [build.environment]
+     DATABASE_URL = "postgresql://postgres:xthZEILEuEwybAIgKHDkQImHeueCbAVk@yamanote.proxy.rlwy.net:28084/railway"
+     NEXTAUTH_URL = "https://jazzy-salamander-509fc3.netlify.app"
+     NEXTAUTH_SECRET = "rastgelebirdeger123456789"
