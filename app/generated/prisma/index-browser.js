@@ -238,21 +238,6 @@ exports.Prisma.DreamCommentScalarFieldEnum = {
   userId: 'userId'
 };
 
-exports.Prisma.StoryScalarFieldEnum = {
-  id: 'id',
-  imageUrl: 'imageUrl',
-  videoUrl: 'videoUrl',
-  textContent: 'textContent',
-  bgColor: 'bgColor',
-  createdAt: 'createdAt',
-  expiresAt: 'expiresAt',
-  isViewed: 'isViewed',
-  viewedAt: 'viewedAt',
-  reactions: 'reactions',
-  userId: 'userId',
-  connectionId: 'connectionId'
-};
-
 exports.Prisma.SurpriseScalarFieldEnum = {
   id: 'id',
   imageUrl: 'imageUrl',
@@ -360,7 +345,6 @@ exports.Prisma.ModelName = {
   Goal: 'Goal',
   Dream: 'Dream',
   DreamComment: 'DreamComment',
-  Story: 'Story',
   Surprise: 'Surprise',
   TimeCapsule: 'TimeCapsule',
   TimeCapsuleComment: 'TimeCapsuleComment',

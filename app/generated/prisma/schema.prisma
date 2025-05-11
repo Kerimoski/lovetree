@@ -35,7 +35,6 @@ model User {
   comments              DreamComment[]
   receivedNotifications Notification[]       @relation("ReceivedNotifications")
   surprises             Surprise[]
-  stories               Story[]              @relation("UserStories")
   timeCapsules          TimeCapsule[]        @relation("UserTimeCapsules")
   timeCapsuleComments   TimeCapsuleComment[] @relation("UserTimeCapsuleComments")
   chatMessages          ChatMessage[]        @relation("UserChatMessages")
@@ -95,7 +94,6 @@ model Connection {
   dreams       Dream[]
   tree         Tree?
   surprises    Surprise[]
-  stories      Story[]       @relation("ConnectionStories")
   timeCapsules TimeCapsule[] @relation("ConnectionTimeCapsules")
   chatMessages ChatMessage[] @relation("ConnectionChatMessages")
 }
@@ -239,27 +237,6 @@ model DreamComment {
 
   userId String
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
-}
-
-// Hikaye modeli - 24 saat görünür olan geçici içerikler
-model Story {
-  id          String    @id @default(cuid())
-  imageUrl    String?
-  videoUrl    String?
-  textContent String?
-  bgColor     String? // Arka plan rengi (metin hikayeleri için)
-  createdAt   DateTime  @default(now())
-  expiresAt   DateTime // 24 saat sonra otomatik silinir
-  isViewed    Boolean   @default(false)
-  viewedAt    DateTime? // Partner tarafından görüntülenme zamanı
-  reactions   Json? // Tepkiler {"emoji": "count"} formatında
-
-  // İlişkiler
-  userId String
-  user   User   @relation("UserStories", fields: [userId], references: [id], onDelete: Cascade)
-
-  connectionId String
-  connection   Connection @relation("ConnectionStories", fields: [connectionId], references: [id], onDelete: Cascade)
 }
 
 // Sürpriz modeli

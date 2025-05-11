@@ -64,11 +64,6 @@ export type Dream = $Result.DefaultSelection<Prisma.$DreamPayload>
  */
 export type DreamComment = $Result.DefaultSelection<Prisma.$DreamCommentPayload>
 /**
- * Model Story
- * 
- */
-export type Story = $Result.DefaultSelection<Prisma.$StoryPayload>
-/**
  * Model Surprise
  * 
  */
@@ -365,16 +360,6 @@ export class PrismaClient<
     * ```
     */
   get dreamComment(): Prisma.DreamCommentDelegate<ExtArgs, ClientOptions>;
-
-  /**
-   * `prisma.story`: Exposes CRUD operations for the **Story** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more Stories
-    * const stories = await prisma.story.findMany()
-    * ```
-    */
-  get story(): Prisma.StoryDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.surprise`: Exposes CRUD operations for the **Surprise** model.
@@ -865,7 +850,6 @@ export namespace Prisma {
     Goal: 'Goal',
     Dream: 'Dream',
     DreamComment: 'DreamComment',
-    Story: 'Story',
     Surprise: 'Surprise',
     TimeCapsule: 'TimeCapsule',
     TimeCapsuleComment: 'TimeCapsuleComment',
@@ -888,7 +872,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "notification" | "connection" | "tree" | "memory" | "note" | "specialDay" | "goal" | "dream" | "dreamComment" | "story" | "surprise" | "timeCapsule" | "timeCapsuleComment" | "chatMessage"
+      modelProps: "user" | "notification" | "connection" | "tree" | "memory" | "note" | "specialDay" | "goal" | "dream" | "dreamComment" | "surprise" | "timeCapsule" | "timeCapsuleComment" | "chatMessage"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1632,80 +1616,6 @@ export namespace Prisma {
           }
         }
       }
-      Story: {
-        payload: Prisma.$StoryPayload<ExtArgs>
-        fields: Prisma.StoryFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.StoryFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$StoryPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.StoryFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$StoryPayload>
-          }
-          findFirst: {
-            args: Prisma.StoryFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$StoryPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.StoryFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$StoryPayload>
-          }
-          findMany: {
-            args: Prisma.StoryFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$StoryPayload>[]
-          }
-          create: {
-            args: Prisma.StoryCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$StoryPayload>
-          }
-          createMany: {
-            args: Prisma.StoryCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.StoryCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$StoryPayload>[]
-          }
-          delete: {
-            args: Prisma.StoryDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$StoryPayload>
-          }
-          update: {
-            args: Prisma.StoryUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$StoryPayload>
-          }
-          deleteMany: {
-            args: Prisma.StoryDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.StoryUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateManyAndReturn: {
-            args: Prisma.StoryUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$StoryPayload>[]
-          }
-          upsert: {
-            args: Prisma.StoryUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$StoryPayload>
-          }
-          aggregate: {
-            args: Prisma.StoryAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateStory>
-          }
-          groupBy: {
-            args: Prisma.StoryGroupByArgs<ExtArgs>
-            result: $Utils.Optional<StoryGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.StoryCountArgs<ExtArgs>
-            result: $Utils.Optional<StoryCountAggregateOutputType> | number
-          }
-        }
-      }
       Surprise: {
         payload: Prisma.$SurprisePayload<ExtArgs>
         fields: Prisma.SurpriseFieldRefs
@@ -2096,7 +2006,6 @@ export namespace Prisma {
     goal?: GoalOmit
     dream?: DreamOmit
     dreamComment?: DreamCommentOmit
-    story?: StoryOmit
     surprise?: SurpriseOmit
     timeCapsule?: TimeCapsuleOmit
     timeCapsuleComment?: TimeCapsuleCommentOmit
@@ -2205,7 +2114,6 @@ export namespace Prisma {
     comments: number
     receivedNotifications: number
     surprises: number
-    stories: number
     timeCapsules: number
     timeCapsuleComments: number
     chatMessages: number
@@ -2222,7 +2130,6 @@ export namespace Prisma {
     comments?: boolean | UserCountOutputTypeCountCommentsArgs
     receivedNotifications?: boolean | UserCountOutputTypeCountReceivedNotificationsArgs
     surprises?: boolean | UserCountOutputTypeCountSurprisesArgs
-    stories?: boolean | UserCountOutputTypeCountStoriesArgs
     timeCapsules?: boolean | UserCountOutputTypeCountTimeCapsulesArgs
     timeCapsuleComments?: boolean | UserCountOutputTypeCountTimeCapsuleCommentsArgs
     chatMessages?: boolean | UserCountOutputTypeCountChatMessagesArgs
@@ -2312,13 +2219,6 @@ export namespace Prisma {
   /**
    * UserCountOutputType without action
    */
-  export type UserCountOutputTypeCountStoriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: StoryWhereInput
-  }
-
-  /**
-   * UserCountOutputType without action
-   */
   export type UserCountOutputTypeCountTimeCapsulesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: TimeCapsuleWhereInput
   }
@@ -2349,7 +2249,6 @@ export namespace Prisma {
     goals: number
     dreams: number
     surprises: number
-    stories: number
     timeCapsules: number
     chatMessages: number
   }
@@ -2361,7 +2260,6 @@ export namespace Prisma {
     goals?: boolean | ConnectionCountOutputTypeCountGoalsArgs
     dreams?: boolean | ConnectionCountOutputTypeCountDreamsArgs
     surprises?: boolean | ConnectionCountOutputTypeCountSurprisesArgs
-    stories?: boolean | ConnectionCountOutputTypeCountStoriesArgs
     timeCapsules?: boolean | ConnectionCountOutputTypeCountTimeCapsulesArgs
     chatMessages?: boolean | ConnectionCountOutputTypeCountChatMessagesArgs
   }
@@ -2417,13 +2315,6 @@ export namespace Prisma {
    */
   export type ConnectionCountOutputTypeCountSurprisesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: SurpriseWhereInput
-  }
-
-  /**
-   * ConnectionCountOutputType without action
-   */
-  export type ConnectionCountOutputTypeCountStoriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: StoryWhereInput
   }
 
   /**
@@ -2713,7 +2604,6 @@ export namespace Prisma {
     comments?: boolean | User$commentsArgs<ExtArgs>
     receivedNotifications?: boolean | User$receivedNotificationsArgs<ExtArgs>
     surprises?: boolean | User$surprisesArgs<ExtArgs>
-    stories?: boolean | User$storiesArgs<ExtArgs>
     timeCapsules?: boolean | User$timeCapsulesArgs<ExtArgs>
     timeCapsuleComments?: boolean | User$timeCapsuleCommentsArgs<ExtArgs>
     chatMessages?: boolean | User$chatMessagesArgs<ExtArgs>
@@ -2768,7 +2658,6 @@ export namespace Prisma {
     comments?: boolean | User$commentsArgs<ExtArgs>
     receivedNotifications?: boolean | User$receivedNotificationsArgs<ExtArgs>
     surprises?: boolean | User$surprisesArgs<ExtArgs>
-    stories?: boolean | User$storiesArgs<ExtArgs>
     timeCapsules?: boolean | User$timeCapsulesArgs<ExtArgs>
     timeCapsuleComments?: boolean | User$timeCapsuleCommentsArgs<ExtArgs>
     chatMessages?: boolean | User$chatMessagesArgs<ExtArgs>
@@ -2790,7 +2679,6 @@ export namespace Prisma {
       comments: Prisma.$DreamCommentPayload<ExtArgs>[]
       receivedNotifications: Prisma.$NotificationPayload<ExtArgs>[]
       surprises: Prisma.$SurprisePayload<ExtArgs>[]
-      stories: Prisma.$StoryPayload<ExtArgs>[]
       timeCapsules: Prisma.$TimeCapsulePayload<ExtArgs>[]
       timeCapsuleComments: Prisma.$TimeCapsuleCommentPayload<ExtArgs>[]
       chatMessages: Prisma.$ChatMessagePayload<ExtArgs>[]
@@ -3209,7 +3097,6 @@ export namespace Prisma {
     comments<T extends User$commentsArgs<ExtArgs> = {}>(args?: Subset<T, User$commentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DreamCommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     receivedNotifications<T extends User$receivedNotificationsArgs<ExtArgs> = {}>(args?: Subset<T, User$receivedNotificationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     surprises<T extends User$surprisesArgs<ExtArgs> = {}>(args?: Subset<T, User$surprisesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SurprisePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    stories<T extends User$storiesArgs<ExtArgs> = {}>(args?: Subset<T, User$storiesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     timeCapsules<T extends User$timeCapsulesArgs<ExtArgs> = {}>(args?: Subset<T, User$timeCapsulesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TimeCapsulePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     timeCapsuleComments<T extends User$timeCapsuleCommentsArgs<ExtArgs> = {}>(args?: Subset<T, User$timeCapsuleCommentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TimeCapsuleCommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     chatMessages<T extends User$chatMessagesArgs<ExtArgs> = {}>(args?: Subset<T, User$chatMessagesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ChatMessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -3876,30 +3763,6 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: SurpriseScalarFieldEnum | SurpriseScalarFieldEnum[]
-  }
-
-  /**
-   * User.stories
-   */
-  export type User$storiesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Story
-     */
-    select?: StorySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Story
-     */
-    omit?: StoryOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: StoryInclude<ExtArgs> | null
-    where?: StoryWhereInput
-    orderBy?: StoryOrderByWithRelationInput | StoryOrderByWithRelationInput[]
-    cursor?: StoryWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: StoryScalarFieldEnum | StoryScalarFieldEnum[]
   }
 
   /**
@@ -5280,7 +5143,6 @@ export namespace Prisma {
     dreams?: boolean | Connection$dreamsArgs<ExtArgs>
     tree?: boolean | Connection$treeArgs<ExtArgs>
     surprises?: boolean | Connection$surprisesArgs<ExtArgs>
-    stories?: boolean | Connection$storiesArgs<ExtArgs>
     timeCapsules?: boolean | Connection$timeCapsulesArgs<ExtArgs>
     chatMessages?: boolean | Connection$chatMessagesArgs<ExtArgs>
     _count?: boolean | ConnectionCountOutputTypeDefaultArgs<ExtArgs>
@@ -5328,7 +5190,6 @@ export namespace Prisma {
     dreams?: boolean | Connection$dreamsArgs<ExtArgs>
     tree?: boolean | Connection$treeArgs<ExtArgs>
     surprises?: boolean | Connection$surprisesArgs<ExtArgs>
-    stories?: boolean | Connection$storiesArgs<ExtArgs>
     timeCapsules?: boolean | Connection$timeCapsulesArgs<ExtArgs>
     chatMessages?: boolean | Connection$chatMessagesArgs<ExtArgs>
     _count?: boolean | ConnectionCountOutputTypeDefaultArgs<ExtArgs>
@@ -5354,7 +5215,6 @@ export namespace Prisma {
       dreams: Prisma.$DreamPayload<ExtArgs>[]
       tree: Prisma.$TreePayload<ExtArgs> | null
       surprises: Prisma.$SurprisePayload<ExtArgs>[]
-      stories: Prisma.$StoryPayload<ExtArgs>[]
       timeCapsules: Prisma.$TimeCapsulePayload<ExtArgs>[]
       chatMessages: Prisma.$ChatMessagePayload<ExtArgs>[]
     }
@@ -5768,7 +5628,6 @@ export namespace Prisma {
     dreams<T extends Connection$dreamsArgs<ExtArgs> = {}>(args?: Subset<T, Connection$dreamsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DreamPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     tree<T extends Connection$treeArgs<ExtArgs> = {}>(args?: Subset<T, Connection$treeArgs<ExtArgs>>): Prisma__TreeClient<$Result.GetResult<Prisma.$TreePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     surprises<T extends Connection$surprisesArgs<ExtArgs> = {}>(args?: Subset<T, Connection$surprisesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SurprisePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    stories<T extends Connection$storiesArgs<ExtArgs> = {}>(args?: Subset<T, Connection$storiesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     timeCapsules<T extends Connection$timeCapsulesArgs<ExtArgs> = {}>(args?: Subset<T, Connection$timeCapsulesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TimeCapsulePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     chatMessages<T extends Connection$chatMessagesArgs<ExtArgs> = {}>(args?: Subset<T, Connection$chatMessagesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ChatMessagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
@@ -6381,30 +6240,6 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: SurpriseScalarFieldEnum | SurpriseScalarFieldEnum[]
-  }
-
-  /**
-   * Connection.stories
-   */
-  export type Connection$storiesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Story
-     */
-    select?: StorySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Story
-     */
-    omit?: StoryOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: StoryInclude<ExtArgs> | null
-    where?: StoryWhereInput
-    orderBy?: StoryOrderByWithRelationInput | StoryOrderByWithRelationInput[]
-    cursor?: StoryWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: StoryScalarFieldEnum | StoryScalarFieldEnum[]
   }
 
   /**
@@ -14442,1159 +14277,6 @@ export namespace Prisma {
 
 
   /**
-   * Model Story
-   */
-
-  export type AggregateStory = {
-    _count: StoryCountAggregateOutputType | null
-    _min: StoryMinAggregateOutputType | null
-    _max: StoryMaxAggregateOutputType | null
-  }
-
-  export type StoryMinAggregateOutputType = {
-    id: string | null
-    imageUrl: string | null
-    videoUrl: string | null
-    textContent: string | null
-    bgColor: string | null
-    createdAt: Date | null
-    expiresAt: Date | null
-    isViewed: boolean | null
-    viewedAt: Date | null
-    userId: string | null
-    connectionId: string | null
-  }
-
-  export type StoryMaxAggregateOutputType = {
-    id: string | null
-    imageUrl: string | null
-    videoUrl: string | null
-    textContent: string | null
-    bgColor: string | null
-    createdAt: Date | null
-    expiresAt: Date | null
-    isViewed: boolean | null
-    viewedAt: Date | null
-    userId: string | null
-    connectionId: string | null
-  }
-
-  export type StoryCountAggregateOutputType = {
-    id: number
-    imageUrl: number
-    videoUrl: number
-    textContent: number
-    bgColor: number
-    createdAt: number
-    expiresAt: number
-    isViewed: number
-    viewedAt: number
-    reactions: number
-    userId: number
-    connectionId: number
-    _all: number
-  }
-
-
-  export type StoryMinAggregateInputType = {
-    id?: true
-    imageUrl?: true
-    videoUrl?: true
-    textContent?: true
-    bgColor?: true
-    createdAt?: true
-    expiresAt?: true
-    isViewed?: true
-    viewedAt?: true
-    userId?: true
-    connectionId?: true
-  }
-
-  export type StoryMaxAggregateInputType = {
-    id?: true
-    imageUrl?: true
-    videoUrl?: true
-    textContent?: true
-    bgColor?: true
-    createdAt?: true
-    expiresAt?: true
-    isViewed?: true
-    viewedAt?: true
-    userId?: true
-    connectionId?: true
-  }
-
-  export type StoryCountAggregateInputType = {
-    id?: true
-    imageUrl?: true
-    videoUrl?: true
-    textContent?: true
-    bgColor?: true
-    createdAt?: true
-    expiresAt?: true
-    isViewed?: true
-    viewedAt?: true
-    reactions?: true
-    userId?: true
-    connectionId?: true
-    _all?: true
-  }
-
-  export type StoryAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Story to aggregate.
-     */
-    where?: StoryWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Stories to fetch.
-     */
-    orderBy?: StoryOrderByWithRelationInput | StoryOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: StoryWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Stories from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Stories.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned Stories
-    **/
-    _count?: true | StoryCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: StoryMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: StoryMaxAggregateInputType
-  }
-
-  export type GetStoryAggregateType<T extends StoryAggregateArgs> = {
-        [P in keyof T & keyof AggregateStory]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateStory[P]>
-      : GetScalarType<T[P], AggregateStory[P]>
-  }
-
-
-
-
-  export type StoryGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: StoryWhereInput
-    orderBy?: StoryOrderByWithAggregationInput | StoryOrderByWithAggregationInput[]
-    by: StoryScalarFieldEnum[] | StoryScalarFieldEnum
-    having?: StoryScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: StoryCountAggregateInputType | true
-    _min?: StoryMinAggregateInputType
-    _max?: StoryMaxAggregateInputType
-  }
-
-  export type StoryGroupByOutputType = {
-    id: string
-    imageUrl: string | null
-    videoUrl: string | null
-    textContent: string | null
-    bgColor: string | null
-    createdAt: Date
-    expiresAt: Date
-    isViewed: boolean
-    viewedAt: Date | null
-    reactions: JsonValue | null
-    userId: string
-    connectionId: string
-    _count: StoryCountAggregateOutputType | null
-    _min: StoryMinAggregateOutputType | null
-    _max: StoryMaxAggregateOutputType | null
-  }
-
-  type GetStoryGroupByPayload<T extends StoryGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<StoryGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof StoryGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], StoryGroupByOutputType[P]>
-            : GetScalarType<T[P], StoryGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type StorySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    imageUrl?: boolean
-    videoUrl?: boolean
-    textContent?: boolean
-    bgColor?: boolean
-    createdAt?: boolean
-    expiresAt?: boolean
-    isViewed?: boolean
-    viewedAt?: boolean
-    reactions?: boolean
-    userId?: boolean
-    connectionId?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
-    connection?: boolean | ConnectionDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["story"]>
-
-  export type StorySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    imageUrl?: boolean
-    videoUrl?: boolean
-    textContent?: boolean
-    bgColor?: boolean
-    createdAt?: boolean
-    expiresAt?: boolean
-    isViewed?: boolean
-    viewedAt?: boolean
-    reactions?: boolean
-    userId?: boolean
-    connectionId?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
-    connection?: boolean | ConnectionDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["story"]>
-
-  export type StorySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    imageUrl?: boolean
-    videoUrl?: boolean
-    textContent?: boolean
-    bgColor?: boolean
-    createdAt?: boolean
-    expiresAt?: boolean
-    isViewed?: boolean
-    viewedAt?: boolean
-    reactions?: boolean
-    userId?: boolean
-    connectionId?: boolean
-    user?: boolean | UserDefaultArgs<ExtArgs>
-    connection?: boolean | ConnectionDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["story"]>
-
-  export type StorySelectScalar = {
-    id?: boolean
-    imageUrl?: boolean
-    videoUrl?: boolean
-    textContent?: boolean
-    bgColor?: boolean
-    createdAt?: boolean
-    expiresAt?: boolean
-    isViewed?: boolean
-    viewedAt?: boolean
-    reactions?: boolean
-    userId?: boolean
-    connectionId?: boolean
-  }
-
-  export type StoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "imageUrl" | "videoUrl" | "textContent" | "bgColor" | "createdAt" | "expiresAt" | "isViewed" | "viewedAt" | "reactions" | "userId" | "connectionId", ExtArgs["result"]["story"]>
-  export type StoryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
-    connection?: boolean | ConnectionDefaultArgs<ExtArgs>
-  }
-  export type StoryIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
-    connection?: boolean | ConnectionDefaultArgs<ExtArgs>
-  }
-  export type StoryIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    user?: boolean | UserDefaultArgs<ExtArgs>
-    connection?: boolean | ConnectionDefaultArgs<ExtArgs>
-  }
-
-  export type $StoryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Story"
-    objects: {
-      user: Prisma.$UserPayload<ExtArgs>
-      connection: Prisma.$ConnectionPayload<ExtArgs>
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: string
-      imageUrl: string | null
-      videoUrl: string | null
-      textContent: string | null
-      bgColor: string | null
-      createdAt: Date
-      expiresAt: Date
-      isViewed: boolean
-      viewedAt: Date | null
-      reactions: Prisma.JsonValue | null
-      userId: string
-      connectionId: string
-    }, ExtArgs["result"]["story"]>
-    composites: {}
-  }
-
-  type StoryGetPayload<S extends boolean | null | undefined | StoryDefaultArgs> = $Result.GetResult<Prisma.$StoryPayload, S>
-
-  type StoryCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<StoryFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: StoryCountAggregateInputType | true
-    }
-
-  export interface StoryDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Story'], meta: { name: 'Story' } }
-    /**
-     * Find zero or one Story that matches the filter.
-     * @param {StoryFindUniqueArgs} args - Arguments to find a Story
-     * @example
-     * // Get one Story
-     * const story = await prisma.story.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends StoryFindUniqueArgs>(args: SelectSubset<T, StoryFindUniqueArgs<ExtArgs>>): Prisma__StoryClient<$Result.GetResult<Prisma.$StoryPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find one Story that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {StoryFindUniqueOrThrowArgs} args - Arguments to find a Story
-     * @example
-     * // Get one Story
-     * const story = await prisma.story.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends StoryFindUniqueOrThrowArgs>(args: SelectSubset<T, StoryFindUniqueOrThrowArgs<ExtArgs>>): Prisma__StoryClient<$Result.GetResult<Prisma.$StoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first Story that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {StoryFindFirstArgs} args - Arguments to find a Story
-     * @example
-     * // Get one Story
-     * const story = await prisma.story.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends StoryFindFirstArgs>(args?: SelectSubset<T, StoryFindFirstArgs<ExtArgs>>): Prisma__StoryClient<$Result.GetResult<Prisma.$StoryPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find the first Story that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {StoryFindFirstOrThrowArgs} args - Arguments to find a Story
-     * @example
-     * // Get one Story
-     * const story = await prisma.story.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends StoryFindFirstOrThrowArgs>(args?: SelectSubset<T, StoryFindFirstOrThrowArgs<ExtArgs>>): Prisma__StoryClient<$Result.GetResult<Prisma.$StoryPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Find zero or more Stories that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {StoryFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all Stories
-     * const stories = await prisma.story.findMany()
-     * 
-     * // Get first 10 Stories
-     * const stories = await prisma.story.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const storyWithIdOnly = await prisma.story.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends StoryFindManyArgs>(args?: SelectSubset<T, StoryFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
-
-    /**
-     * Create a Story.
-     * @param {StoryCreateArgs} args - Arguments to create a Story.
-     * @example
-     * // Create one Story
-     * const Story = await prisma.story.create({
-     *   data: {
-     *     // ... data to create a Story
-     *   }
-     * })
-     * 
-     */
-    create<T extends StoryCreateArgs>(args: SelectSubset<T, StoryCreateArgs<ExtArgs>>): Prisma__StoryClient<$Result.GetResult<Prisma.$StoryPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Create many Stories.
-     * @param {StoryCreateManyArgs} args - Arguments to create many Stories.
-     * @example
-     * // Create many Stories
-     * const story = await prisma.story.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends StoryCreateManyArgs>(args?: SelectSubset<T, StoryCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many Stories and returns the data saved in the database.
-     * @param {StoryCreateManyAndReturnArgs} args - Arguments to create many Stories.
-     * @example
-     * // Create many Stories
-     * const story = await prisma.story.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many Stories and only return the `id`
-     * const storyWithIdOnly = await prisma.story.createManyAndReturn({
-     *   select: { id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends StoryCreateManyAndReturnArgs>(args?: SelectSubset<T, StoryCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StoryPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Delete a Story.
-     * @param {StoryDeleteArgs} args - Arguments to delete one Story.
-     * @example
-     * // Delete one Story
-     * const Story = await prisma.story.delete({
-     *   where: {
-     *     // ... filter to delete one Story
-     *   }
-     * })
-     * 
-     */
-    delete<T extends StoryDeleteArgs>(args: SelectSubset<T, StoryDeleteArgs<ExtArgs>>): Prisma__StoryClient<$Result.GetResult<Prisma.$StoryPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Update one Story.
-     * @param {StoryUpdateArgs} args - Arguments to update one Story.
-     * @example
-     * // Update one Story
-     * const story = await prisma.story.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends StoryUpdateArgs>(args: SelectSubset<T, StoryUpdateArgs<ExtArgs>>): Prisma__StoryClient<$Result.GetResult<Prisma.$StoryPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-    /**
-     * Delete zero or more Stories.
-     * @param {StoryDeleteManyArgs} args - Arguments to filter Stories to delete.
-     * @example
-     * // Delete a few Stories
-     * const { count } = await prisma.story.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends StoryDeleteManyArgs>(args?: SelectSubset<T, StoryDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Stories.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {StoryUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many Stories
-     * const story = await prisma.story.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends StoryUpdateManyArgs>(args: SelectSubset<T, StoryUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Stories and returns the data updated in the database.
-     * @param {StoryUpdateManyAndReturnArgs} args - Arguments to update many Stories.
-     * @example
-     * // Update many Stories
-     * const story = await prisma.story.updateManyAndReturn({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Update zero or more Stories and only return the `id`
-     * const storyWithIdOnly = await prisma.story.updateManyAndReturn({
-     *   select: { id: true },
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    updateManyAndReturn<T extends StoryUpdateManyAndReturnArgs>(args: SelectSubset<T, StoryUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StoryPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
-
-    /**
-     * Create or update one Story.
-     * @param {StoryUpsertArgs} args - Arguments to update or create a Story.
-     * @example
-     * // Update or create a Story
-     * const story = await prisma.story.upsert({
-     *   create: {
-     *     // ... data to create a Story
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the Story we want to update
-     *   }
-     * })
-     */
-    upsert<T extends StoryUpsertArgs>(args: SelectSubset<T, StoryUpsertArgs<ExtArgs>>): Prisma__StoryClient<$Result.GetResult<Prisma.$StoryPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
-
-    /**
-     * Count the number of Stories.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {StoryCountArgs} args - Arguments to filter Stories to count.
-     * @example
-     * // Count the number of Stories
-     * const count = await prisma.story.count({
-     *   where: {
-     *     // ... the filter for the Stories we want to count
-     *   }
-     * })
-    **/
-    count<T extends StoryCountArgs>(
-      args?: Subset<T, StoryCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], StoryCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a Story.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {StoryAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends StoryAggregateArgs>(args: Subset<T, StoryAggregateArgs>): Prisma.PrismaPromise<GetStoryAggregateType<T>>
-
-    /**
-     * Group by Story.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {StoryGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends StoryGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: StoryGroupByArgs['orderBy'] }
-        : { orderBy?: StoryGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, StoryGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetStoryGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the Story model
-   */
-  readonly fields: StoryFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for Story.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__StoryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    connection<T extends ConnectionDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ConnectionDefaultArgs<ExtArgs>>): Prisma__ConnectionClient<$Result.GetResult<Prisma.$ConnectionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the Story model
-   */
-  interface StoryFieldRefs {
-    readonly id: FieldRef<"Story", 'String'>
-    readonly imageUrl: FieldRef<"Story", 'String'>
-    readonly videoUrl: FieldRef<"Story", 'String'>
-    readonly textContent: FieldRef<"Story", 'String'>
-    readonly bgColor: FieldRef<"Story", 'String'>
-    readonly createdAt: FieldRef<"Story", 'DateTime'>
-    readonly expiresAt: FieldRef<"Story", 'DateTime'>
-    readonly isViewed: FieldRef<"Story", 'Boolean'>
-    readonly viewedAt: FieldRef<"Story", 'DateTime'>
-    readonly reactions: FieldRef<"Story", 'Json'>
-    readonly userId: FieldRef<"Story", 'String'>
-    readonly connectionId: FieldRef<"Story", 'String'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * Story findUnique
-   */
-  export type StoryFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Story
-     */
-    select?: StorySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Story
-     */
-    omit?: StoryOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: StoryInclude<ExtArgs> | null
-    /**
-     * Filter, which Story to fetch.
-     */
-    where: StoryWhereUniqueInput
-  }
-
-  /**
-   * Story findUniqueOrThrow
-   */
-  export type StoryFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Story
-     */
-    select?: StorySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Story
-     */
-    omit?: StoryOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: StoryInclude<ExtArgs> | null
-    /**
-     * Filter, which Story to fetch.
-     */
-    where: StoryWhereUniqueInput
-  }
-
-  /**
-   * Story findFirst
-   */
-  export type StoryFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Story
-     */
-    select?: StorySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Story
-     */
-    omit?: StoryOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: StoryInclude<ExtArgs> | null
-    /**
-     * Filter, which Story to fetch.
-     */
-    where?: StoryWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Stories to fetch.
-     */
-    orderBy?: StoryOrderByWithRelationInput | StoryOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Stories.
-     */
-    cursor?: StoryWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Stories from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Stories.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Stories.
-     */
-    distinct?: StoryScalarFieldEnum | StoryScalarFieldEnum[]
-  }
-
-  /**
-   * Story findFirstOrThrow
-   */
-  export type StoryFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Story
-     */
-    select?: StorySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Story
-     */
-    omit?: StoryOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: StoryInclude<ExtArgs> | null
-    /**
-     * Filter, which Story to fetch.
-     */
-    where?: StoryWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Stories to fetch.
-     */
-    orderBy?: StoryOrderByWithRelationInput | StoryOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Stories.
-     */
-    cursor?: StoryWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Stories from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Stories.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Stories.
-     */
-    distinct?: StoryScalarFieldEnum | StoryScalarFieldEnum[]
-  }
-
-  /**
-   * Story findMany
-   */
-  export type StoryFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Story
-     */
-    select?: StorySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Story
-     */
-    omit?: StoryOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: StoryInclude<ExtArgs> | null
-    /**
-     * Filter, which Stories to fetch.
-     */
-    where?: StoryWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Stories to fetch.
-     */
-    orderBy?: StoryOrderByWithRelationInput | StoryOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing Stories.
-     */
-    cursor?: StoryWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Stories from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Stories.
-     */
-    skip?: number
-    distinct?: StoryScalarFieldEnum | StoryScalarFieldEnum[]
-  }
-
-  /**
-   * Story create
-   */
-  export type StoryCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Story
-     */
-    select?: StorySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Story
-     */
-    omit?: StoryOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: StoryInclude<ExtArgs> | null
-    /**
-     * The data needed to create a Story.
-     */
-    data: XOR<StoryCreateInput, StoryUncheckedCreateInput>
-  }
-
-  /**
-   * Story createMany
-   */
-  export type StoryCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many Stories.
-     */
-    data: StoryCreateManyInput | StoryCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * Story createManyAndReturn
-   */
-  export type StoryCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Story
-     */
-    select?: StorySelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the Story
-     */
-    omit?: StoryOmit<ExtArgs> | null
-    /**
-     * The data used to create many Stories.
-     */
-    data: StoryCreateManyInput | StoryCreateManyInput[]
-    skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: StoryIncludeCreateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * Story update
-   */
-  export type StoryUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Story
-     */
-    select?: StorySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Story
-     */
-    omit?: StoryOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: StoryInclude<ExtArgs> | null
-    /**
-     * The data needed to update a Story.
-     */
-    data: XOR<StoryUpdateInput, StoryUncheckedUpdateInput>
-    /**
-     * Choose, which Story to update.
-     */
-    where: StoryWhereUniqueInput
-  }
-
-  /**
-   * Story updateMany
-   */
-  export type StoryUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update Stories.
-     */
-    data: XOR<StoryUpdateManyMutationInput, StoryUncheckedUpdateManyInput>
-    /**
-     * Filter which Stories to update
-     */
-    where?: StoryWhereInput
-    /**
-     * Limit how many Stories to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * Story updateManyAndReturn
-   */
-  export type StoryUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Story
-     */
-    select?: StorySelectUpdateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the Story
-     */
-    omit?: StoryOmit<ExtArgs> | null
-    /**
-     * The data used to update Stories.
-     */
-    data: XOR<StoryUpdateManyMutationInput, StoryUncheckedUpdateManyInput>
-    /**
-     * Filter which Stories to update
-     */
-    where?: StoryWhereInput
-    /**
-     * Limit how many Stories to update.
-     */
-    limit?: number
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: StoryIncludeUpdateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * Story upsert
-   */
-  export type StoryUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Story
-     */
-    select?: StorySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Story
-     */
-    omit?: StoryOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: StoryInclude<ExtArgs> | null
-    /**
-     * The filter to search for the Story to update in case it exists.
-     */
-    where: StoryWhereUniqueInput
-    /**
-     * In case the Story found by the `where` argument doesn't exist, create a new Story with this data.
-     */
-    create: XOR<StoryCreateInput, StoryUncheckedCreateInput>
-    /**
-     * In case the Story was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<StoryUpdateInput, StoryUncheckedUpdateInput>
-  }
-
-  /**
-   * Story delete
-   */
-  export type StoryDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Story
-     */
-    select?: StorySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Story
-     */
-    omit?: StoryOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: StoryInclude<ExtArgs> | null
-    /**
-     * Filter which Story to delete.
-     */
-    where: StoryWhereUniqueInput
-  }
-
-  /**
-   * Story deleteMany
-   */
-  export type StoryDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Stories to delete
-     */
-    where?: StoryWhereInput
-    /**
-     * Limit how many Stories to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * Story without action
-   */
-  export type StoryDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Story
-     */
-    select?: StorySelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Story
-     */
-    omit?: StoryOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: StoryInclude<ExtArgs> | null
-  }
-
-
-  /**
    * Model Surprise
    */
 
@@ -20219,24 +18901,6 @@ export namespace Prisma {
   export type DreamCommentScalarFieldEnum = (typeof DreamCommentScalarFieldEnum)[keyof typeof DreamCommentScalarFieldEnum]
 
 
-  export const StoryScalarFieldEnum: {
-    id: 'id',
-    imageUrl: 'imageUrl',
-    videoUrl: 'videoUrl',
-    textContent: 'textContent',
-    bgColor: 'bgColor',
-    createdAt: 'createdAt',
-    expiresAt: 'expiresAt',
-    isViewed: 'isViewed',
-    viewedAt: 'viewedAt',
-    reactions: 'reactions',
-    userId: 'userId',
-    connectionId: 'connectionId'
-  };
-
-  export type StoryScalarFieldEnum = (typeof StoryScalarFieldEnum)[keyof typeof StoryScalarFieldEnum]
-
-
   export const SurpriseScalarFieldEnum: {
     id: 'id',
     imageUrl: 'imageUrl',
@@ -20485,7 +19149,6 @@ export namespace Prisma {
     comments?: DreamCommentListRelationFilter
     receivedNotifications?: NotificationListRelationFilter
     surprises?: SurpriseListRelationFilter
-    stories?: StoryListRelationFilter
     timeCapsules?: TimeCapsuleListRelationFilter
     timeCapsuleComments?: TimeCapsuleCommentListRelationFilter
     chatMessages?: ChatMessageListRelationFilter
@@ -20511,7 +19174,6 @@ export namespace Prisma {
     comments?: DreamCommentOrderByRelationAggregateInput
     receivedNotifications?: NotificationOrderByRelationAggregateInput
     surprises?: SurpriseOrderByRelationAggregateInput
-    stories?: StoryOrderByRelationAggregateInput
     timeCapsules?: TimeCapsuleOrderByRelationAggregateInput
     timeCapsuleComments?: TimeCapsuleCommentOrderByRelationAggregateInput
     chatMessages?: ChatMessageOrderByRelationAggregateInput
@@ -20540,7 +19202,6 @@ export namespace Prisma {
     comments?: DreamCommentListRelationFilter
     receivedNotifications?: NotificationListRelationFilter
     surprises?: SurpriseListRelationFilter
-    stories?: StoryListRelationFilter
     timeCapsules?: TimeCapsuleListRelationFilter
     timeCapsuleComments?: TimeCapsuleCommentListRelationFilter
     chatMessages?: ChatMessageListRelationFilter
@@ -20670,7 +19331,6 @@ export namespace Prisma {
     dreams?: DreamListRelationFilter
     tree?: XOR<TreeNullableScalarRelationFilter, TreeWhereInput> | null
     surprises?: SurpriseListRelationFilter
-    stories?: StoryListRelationFilter
     timeCapsules?: TimeCapsuleListRelationFilter
     chatMessages?: ChatMessageListRelationFilter
   }
@@ -20691,7 +19351,6 @@ export namespace Prisma {
     dreams?: DreamOrderByRelationAggregateInput
     tree?: TreeOrderByWithRelationInput
     surprises?: SurpriseOrderByRelationAggregateInput
-    stories?: StoryOrderByRelationAggregateInput
     timeCapsules?: TimeCapsuleOrderByRelationAggregateInput
     chatMessages?: ChatMessageOrderByRelationAggregateInput
   }
@@ -20715,7 +19374,6 @@ export namespace Prisma {
     dreams?: DreamListRelationFilter
     tree?: XOR<TreeNullableScalarRelationFilter, TreeWhereInput> | null
     surprises?: SurpriseListRelationFilter
-    stories?: StoryListRelationFilter
     timeCapsules?: TimeCapsuleListRelationFilter
     chatMessages?: ChatMessageListRelationFilter
   }, "id" | "connectionCode">
@@ -21301,99 +19959,6 @@ export namespace Prisma {
     userId?: StringWithAggregatesFilter<"DreamComment"> | string
   }
 
-  export type StoryWhereInput = {
-    AND?: StoryWhereInput | StoryWhereInput[]
-    OR?: StoryWhereInput[]
-    NOT?: StoryWhereInput | StoryWhereInput[]
-    id?: StringFilter<"Story"> | string
-    imageUrl?: StringNullableFilter<"Story"> | string | null
-    videoUrl?: StringNullableFilter<"Story"> | string | null
-    textContent?: StringNullableFilter<"Story"> | string | null
-    bgColor?: StringNullableFilter<"Story"> | string | null
-    createdAt?: DateTimeFilter<"Story"> | Date | string
-    expiresAt?: DateTimeFilter<"Story"> | Date | string
-    isViewed?: BoolFilter<"Story"> | boolean
-    viewedAt?: DateTimeNullableFilter<"Story"> | Date | string | null
-    reactions?: JsonNullableFilter<"Story">
-    userId?: StringFilter<"Story"> | string
-    connectionId?: StringFilter<"Story"> | string
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
-    connection?: XOR<ConnectionScalarRelationFilter, ConnectionWhereInput>
-  }
-
-  export type StoryOrderByWithRelationInput = {
-    id?: SortOrder
-    imageUrl?: SortOrderInput | SortOrder
-    videoUrl?: SortOrderInput | SortOrder
-    textContent?: SortOrderInput | SortOrder
-    bgColor?: SortOrderInput | SortOrder
-    createdAt?: SortOrder
-    expiresAt?: SortOrder
-    isViewed?: SortOrder
-    viewedAt?: SortOrderInput | SortOrder
-    reactions?: SortOrderInput | SortOrder
-    userId?: SortOrder
-    connectionId?: SortOrder
-    user?: UserOrderByWithRelationInput
-    connection?: ConnectionOrderByWithRelationInput
-  }
-
-  export type StoryWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
-    AND?: StoryWhereInput | StoryWhereInput[]
-    OR?: StoryWhereInput[]
-    NOT?: StoryWhereInput | StoryWhereInput[]
-    imageUrl?: StringNullableFilter<"Story"> | string | null
-    videoUrl?: StringNullableFilter<"Story"> | string | null
-    textContent?: StringNullableFilter<"Story"> | string | null
-    bgColor?: StringNullableFilter<"Story"> | string | null
-    createdAt?: DateTimeFilter<"Story"> | Date | string
-    expiresAt?: DateTimeFilter<"Story"> | Date | string
-    isViewed?: BoolFilter<"Story"> | boolean
-    viewedAt?: DateTimeNullableFilter<"Story"> | Date | string | null
-    reactions?: JsonNullableFilter<"Story">
-    userId?: StringFilter<"Story"> | string
-    connectionId?: StringFilter<"Story"> | string
-    user?: XOR<UserScalarRelationFilter, UserWhereInput>
-    connection?: XOR<ConnectionScalarRelationFilter, ConnectionWhereInput>
-  }, "id">
-
-  export type StoryOrderByWithAggregationInput = {
-    id?: SortOrder
-    imageUrl?: SortOrderInput | SortOrder
-    videoUrl?: SortOrderInput | SortOrder
-    textContent?: SortOrderInput | SortOrder
-    bgColor?: SortOrderInput | SortOrder
-    createdAt?: SortOrder
-    expiresAt?: SortOrder
-    isViewed?: SortOrder
-    viewedAt?: SortOrderInput | SortOrder
-    reactions?: SortOrderInput | SortOrder
-    userId?: SortOrder
-    connectionId?: SortOrder
-    _count?: StoryCountOrderByAggregateInput
-    _max?: StoryMaxOrderByAggregateInput
-    _min?: StoryMinOrderByAggregateInput
-  }
-
-  export type StoryScalarWhereWithAggregatesInput = {
-    AND?: StoryScalarWhereWithAggregatesInput | StoryScalarWhereWithAggregatesInput[]
-    OR?: StoryScalarWhereWithAggregatesInput[]
-    NOT?: StoryScalarWhereWithAggregatesInput | StoryScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"Story"> | string
-    imageUrl?: StringNullableWithAggregatesFilter<"Story"> | string | null
-    videoUrl?: StringNullableWithAggregatesFilter<"Story"> | string | null
-    textContent?: StringNullableWithAggregatesFilter<"Story"> | string | null
-    bgColor?: StringNullableWithAggregatesFilter<"Story"> | string | null
-    createdAt?: DateTimeWithAggregatesFilter<"Story"> | Date | string
-    expiresAt?: DateTimeWithAggregatesFilter<"Story"> | Date | string
-    isViewed?: BoolWithAggregatesFilter<"Story"> | boolean
-    viewedAt?: DateTimeNullableWithAggregatesFilter<"Story"> | Date | string | null
-    reactions?: JsonNullableWithAggregatesFilter<"Story">
-    userId?: StringWithAggregatesFilter<"Story"> | string
-    connectionId?: StringWithAggregatesFilter<"Story"> | string
-  }
-
   export type SurpriseWhereInput = {
     AND?: SurpriseWhereInput | SurpriseWhereInput[]
     OR?: SurpriseWhereInput[]
@@ -21714,7 +20279,6 @@ export namespace Prisma {
     comments?: DreamCommentCreateNestedManyWithoutUserInput
     receivedNotifications?: NotificationCreateNestedManyWithoutUserInput
     surprises?: SurpriseCreateNestedManyWithoutUserInput
-    stories?: StoryCreateNestedManyWithoutUserInput
     timeCapsules?: TimeCapsuleCreateNestedManyWithoutUserInput
     timeCapsuleComments?: TimeCapsuleCommentCreateNestedManyWithoutUserInput
     chatMessages?: ChatMessageCreateNestedManyWithoutUserInput
@@ -21740,7 +20304,6 @@ export namespace Prisma {
     comments?: DreamCommentUncheckedCreateNestedManyWithoutUserInput
     receivedNotifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
     surprises?: SurpriseUncheckedCreateNestedManyWithoutUserInput
-    stories?: StoryUncheckedCreateNestedManyWithoutUserInput
     timeCapsules?: TimeCapsuleUncheckedCreateNestedManyWithoutUserInput
     timeCapsuleComments?: TimeCapsuleCommentUncheckedCreateNestedManyWithoutUserInput
     chatMessages?: ChatMessageUncheckedCreateNestedManyWithoutUserInput
@@ -21766,7 +20329,6 @@ export namespace Prisma {
     comments?: DreamCommentUpdateManyWithoutUserNestedInput
     receivedNotifications?: NotificationUpdateManyWithoutUserNestedInput
     surprises?: SurpriseUpdateManyWithoutUserNestedInput
-    stories?: StoryUpdateManyWithoutUserNestedInput
     timeCapsules?: TimeCapsuleUpdateManyWithoutUserNestedInput
     timeCapsuleComments?: TimeCapsuleCommentUpdateManyWithoutUserNestedInput
     chatMessages?: ChatMessageUpdateManyWithoutUserNestedInput
@@ -21792,7 +20354,6 @@ export namespace Prisma {
     comments?: DreamCommentUncheckedUpdateManyWithoutUserNestedInput
     receivedNotifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
     surprises?: SurpriseUncheckedUpdateManyWithoutUserNestedInput
-    stories?: StoryUncheckedUpdateManyWithoutUserNestedInput
     timeCapsules?: TimeCapsuleUncheckedUpdateManyWithoutUserNestedInput
     timeCapsuleComments?: TimeCapsuleCommentUncheckedUpdateManyWithoutUserNestedInput
     chatMessages?: ChatMessageUncheckedUpdateManyWithoutUserNestedInput
@@ -21931,7 +20492,6 @@ export namespace Prisma {
     dreams?: DreamCreateNestedManyWithoutConnectionInput
     tree?: TreeCreateNestedOneWithoutConnectionInput
     surprises?: SurpriseCreateNestedManyWithoutConnectionInput
-    stories?: StoryCreateNestedManyWithoutConnectionInput
     timeCapsules?: TimeCapsuleCreateNestedManyWithoutConnectionInput
     chatMessages?: ChatMessageCreateNestedManyWithoutConnectionInput
   }
@@ -21950,7 +20510,6 @@ export namespace Prisma {
     dreams?: DreamUncheckedCreateNestedManyWithoutConnectionInput
     tree?: TreeUncheckedCreateNestedOneWithoutConnectionInput
     surprises?: SurpriseUncheckedCreateNestedManyWithoutConnectionInput
-    stories?: StoryUncheckedCreateNestedManyWithoutConnectionInput
     timeCapsules?: TimeCapsuleUncheckedCreateNestedManyWithoutConnectionInput
     chatMessages?: ChatMessageUncheckedCreateNestedManyWithoutConnectionInput
   }
@@ -21969,7 +20528,6 @@ export namespace Prisma {
     dreams?: DreamUpdateManyWithoutConnectionNestedInput
     tree?: TreeUpdateOneWithoutConnectionNestedInput
     surprises?: SurpriseUpdateManyWithoutConnectionNestedInput
-    stories?: StoryUpdateManyWithoutConnectionNestedInput
     timeCapsules?: TimeCapsuleUpdateManyWithoutConnectionNestedInput
     chatMessages?: ChatMessageUpdateManyWithoutConnectionNestedInput
   }
@@ -21988,7 +20546,6 @@ export namespace Prisma {
     dreams?: DreamUncheckedUpdateManyWithoutConnectionNestedInput
     tree?: TreeUncheckedUpdateOneWithoutConnectionNestedInput
     surprises?: SurpriseUncheckedUpdateManyWithoutConnectionNestedInput
-    stories?: StoryUncheckedUpdateManyWithoutConnectionNestedInput
     timeCapsules?: TimeCapsuleUncheckedUpdateManyWithoutConnectionNestedInput
     chatMessages?: ChatMessageUncheckedUpdateManyWithoutConnectionNestedInput
   }
@@ -22604,109 +21161,6 @@ export namespace Prisma {
     userId?: StringFieldUpdateOperationsInput | string
   }
 
-  export type StoryCreateInput = {
-    id?: string
-    imageUrl?: string | null
-    videoUrl?: string | null
-    textContent?: string | null
-    bgColor?: string | null
-    createdAt?: Date | string
-    expiresAt: Date | string
-    isViewed?: boolean
-    viewedAt?: Date | string | null
-    reactions?: NullableJsonNullValueInput | InputJsonValue
-    user: UserCreateNestedOneWithoutStoriesInput
-    connection: ConnectionCreateNestedOneWithoutStoriesInput
-  }
-
-  export type StoryUncheckedCreateInput = {
-    id?: string
-    imageUrl?: string | null
-    videoUrl?: string | null
-    textContent?: string | null
-    bgColor?: string | null
-    createdAt?: Date | string
-    expiresAt: Date | string
-    isViewed?: boolean
-    viewedAt?: Date | string | null
-    reactions?: NullableJsonNullValueInput | InputJsonValue
-    userId: string
-    connectionId: string
-  }
-
-  export type StoryUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    videoUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    textContent?: NullableStringFieldUpdateOperationsInput | string | null
-    bgColor?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    isViewed?: BoolFieldUpdateOperationsInput | boolean
-    viewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    reactions?: NullableJsonNullValueInput | InputJsonValue
-    user?: UserUpdateOneRequiredWithoutStoriesNestedInput
-    connection?: ConnectionUpdateOneRequiredWithoutStoriesNestedInput
-  }
-
-  export type StoryUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    videoUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    textContent?: NullableStringFieldUpdateOperationsInput | string | null
-    bgColor?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    isViewed?: BoolFieldUpdateOperationsInput | boolean
-    viewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    reactions?: NullableJsonNullValueInput | InputJsonValue
-    userId?: StringFieldUpdateOperationsInput | string
-    connectionId?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type StoryCreateManyInput = {
-    id?: string
-    imageUrl?: string | null
-    videoUrl?: string | null
-    textContent?: string | null
-    bgColor?: string | null
-    createdAt?: Date | string
-    expiresAt: Date | string
-    isViewed?: boolean
-    viewedAt?: Date | string | null
-    reactions?: NullableJsonNullValueInput | InputJsonValue
-    userId: string
-    connectionId: string
-  }
-
-  export type StoryUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    videoUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    textContent?: NullableStringFieldUpdateOperationsInput | string | null
-    bgColor?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    isViewed?: BoolFieldUpdateOperationsInput | boolean
-    viewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    reactions?: NullableJsonNullValueInput | InputJsonValue
-  }
-
-  export type StoryUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    videoUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    textContent?: NullableStringFieldUpdateOperationsInput | string | null
-    bgColor?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    isViewed?: BoolFieldUpdateOperationsInput | boolean
-    viewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    reactions?: NullableJsonNullValueInput | InputJsonValue
-    userId?: StringFieldUpdateOperationsInput | string
-    connectionId?: StringFieldUpdateOperationsInput | string
-  }
-
   export type SurpriseCreateInput = {
     id?: string
     imageUrl: string
@@ -23120,12 +21574,6 @@ export namespace Prisma {
     none?: SurpriseWhereInput
   }
 
-  export type StoryListRelationFilter = {
-    every?: StoryWhereInput
-    some?: StoryWhereInput
-    none?: StoryWhereInput
-  }
-
   export type TimeCapsuleListRelationFilter = {
     every?: TimeCapsuleWhereInput
     some?: TimeCapsuleWhereInput
@@ -23182,10 +21630,6 @@ export namespace Prisma {
   }
 
   export type SurpriseOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type StoryOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -23839,49 +22283,6 @@ export namespace Prisma {
     userId?: SortOrder
   }
 
-  export type StoryCountOrderByAggregateInput = {
-    id?: SortOrder
-    imageUrl?: SortOrder
-    videoUrl?: SortOrder
-    textContent?: SortOrder
-    bgColor?: SortOrder
-    createdAt?: SortOrder
-    expiresAt?: SortOrder
-    isViewed?: SortOrder
-    viewedAt?: SortOrder
-    reactions?: SortOrder
-    userId?: SortOrder
-    connectionId?: SortOrder
-  }
-
-  export type StoryMaxOrderByAggregateInput = {
-    id?: SortOrder
-    imageUrl?: SortOrder
-    videoUrl?: SortOrder
-    textContent?: SortOrder
-    bgColor?: SortOrder
-    createdAt?: SortOrder
-    expiresAt?: SortOrder
-    isViewed?: SortOrder
-    viewedAt?: SortOrder
-    userId?: SortOrder
-    connectionId?: SortOrder
-  }
-
-  export type StoryMinOrderByAggregateInput = {
-    id?: SortOrder
-    imageUrl?: SortOrder
-    videoUrl?: SortOrder
-    textContent?: SortOrder
-    bgColor?: SortOrder
-    createdAt?: SortOrder
-    expiresAt?: SortOrder
-    isViewed?: SortOrder
-    viewedAt?: SortOrder
-    userId?: SortOrder
-    connectionId?: SortOrder
-  }
-
   export type SurpriseCountOrderByAggregateInput = {
     id?: SortOrder
     imageUrl?: SortOrder
@@ -24092,13 +22493,6 @@ export namespace Prisma {
     connect?: SurpriseWhereUniqueInput | SurpriseWhereUniqueInput[]
   }
 
-  export type StoryCreateNestedManyWithoutUserInput = {
-    create?: XOR<StoryCreateWithoutUserInput, StoryUncheckedCreateWithoutUserInput> | StoryCreateWithoutUserInput[] | StoryUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: StoryCreateOrConnectWithoutUserInput | StoryCreateOrConnectWithoutUserInput[]
-    createMany?: StoryCreateManyUserInputEnvelope
-    connect?: StoryWhereUniqueInput | StoryWhereUniqueInput[]
-  }
-
   export type TimeCapsuleCreateNestedManyWithoutUserInput = {
     create?: XOR<TimeCapsuleCreateWithoutUserInput, TimeCapsuleUncheckedCreateWithoutUserInput> | TimeCapsuleCreateWithoutUserInput[] | TimeCapsuleUncheckedCreateWithoutUserInput[]
     connectOrCreate?: TimeCapsuleCreateOrConnectWithoutUserInput | TimeCapsuleCreateOrConnectWithoutUserInput[]
@@ -24188,13 +22582,6 @@ export namespace Prisma {
     connectOrCreate?: SurpriseCreateOrConnectWithoutUserInput | SurpriseCreateOrConnectWithoutUserInput[]
     createMany?: SurpriseCreateManyUserInputEnvelope
     connect?: SurpriseWhereUniqueInput | SurpriseWhereUniqueInput[]
-  }
-
-  export type StoryUncheckedCreateNestedManyWithoutUserInput = {
-    create?: XOR<StoryCreateWithoutUserInput, StoryUncheckedCreateWithoutUserInput> | StoryCreateWithoutUserInput[] | StoryUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: StoryCreateOrConnectWithoutUserInput | StoryCreateOrConnectWithoutUserInput[]
-    createMany?: StoryCreateManyUserInputEnvelope
-    connect?: StoryWhereUniqueInput | StoryWhereUniqueInput[]
   }
 
   export type TimeCapsuleUncheckedCreateNestedManyWithoutUserInput = {
@@ -24372,20 +22759,6 @@ export namespace Prisma {
     update?: SurpriseUpdateWithWhereUniqueWithoutUserInput | SurpriseUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: SurpriseUpdateManyWithWhereWithoutUserInput | SurpriseUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: SurpriseScalarWhereInput | SurpriseScalarWhereInput[]
-  }
-
-  export type StoryUpdateManyWithoutUserNestedInput = {
-    create?: XOR<StoryCreateWithoutUserInput, StoryUncheckedCreateWithoutUserInput> | StoryCreateWithoutUserInput[] | StoryUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: StoryCreateOrConnectWithoutUserInput | StoryCreateOrConnectWithoutUserInput[]
-    upsert?: StoryUpsertWithWhereUniqueWithoutUserInput | StoryUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: StoryCreateManyUserInputEnvelope
-    set?: StoryWhereUniqueInput | StoryWhereUniqueInput[]
-    disconnect?: StoryWhereUniqueInput | StoryWhereUniqueInput[]
-    delete?: StoryWhereUniqueInput | StoryWhereUniqueInput[]
-    connect?: StoryWhereUniqueInput | StoryWhereUniqueInput[]
-    update?: StoryUpdateWithWhereUniqueWithoutUserInput | StoryUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: StoryUpdateManyWithWhereWithoutUserInput | StoryUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: StoryScalarWhereInput | StoryScalarWhereInput[]
   }
 
   export type TimeCapsuleUpdateManyWithoutUserNestedInput = {
@@ -24570,20 +22943,6 @@ export namespace Prisma {
     deleteMany?: SurpriseScalarWhereInput | SurpriseScalarWhereInput[]
   }
 
-  export type StoryUncheckedUpdateManyWithoutUserNestedInput = {
-    create?: XOR<StoryCreateWithoutUserInput, StoryUncheckedCreateWithoutUserInput> | StoryCreateWithoutUserInput[] | StoryUncheckedCreateWithoutUserInput[]
-    connectOrCreate?: StoryCreateOrConnectWithoutUserInput | StoryCreateOrConnectWithoutUserInput[]
-    upsert?: StoryUpsertWithWhereUniqueWithoutUserInput | StoryUpsertWithWhereUniqueWithoutUserInput[]
-    createMany?: StoryCreateManyUserInputEnvelope
-    set?: StoryWhereUniqueInput | StoryWhereUniqueInput[]
-    disconnect?: StoryWhereUniqueInput | StoryWhereUniqueInput[]
-    delete?: StoryWhereUniqueInput | StoryWhereUniqueInput[]
-    connect?: StoryWhereUniqueInput | StoryWhereUniqueInput[]
-    update?: StoryUpdateWithWhereUniqueWithoutUserInput | StoryUpdateWithWhereUniqueWithoutUserInput[]
-    updateMany?: StoryUpdateManyWithWhereWithoutUserInput | StoryUpdateManyWithWhereWithoutUserInput[]
-    deleteMany?: StoryScalarWhereInput | StoryScalarWhereInput[]
-  }
-
   export type TimeCapsuleUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<TimeCapsuleCreateWithoutUserInput, TimeCapsuleUncheckedCreateWithoutUserInput> | TimeCapsuleCreateWithoutUserInput[] | TimeCapsuleUncheckedCreateWithoutUserInput[]
     connectOrCreate?: TimeCapsuleCreateOrConnectWithoutUserInput | TimeCapsuleCreateOrConnectWithoutUserInput[]
@@ -24712,13 +23071,6 @@ export namespace Prisma {
     connect?: SurpriseWhereUniqueInput | SurpriseWhereUniqueInput[]
   }
 
-  export type StoryCreateNestedManyWithoutConnectionInput = {
-    create?: XOR<StoryCreateWithoutConnectionInput, StoryUncheckedCreateWithoutConnectionInput> | StoryCreateWithoutConnectionInput[] | StoryUncheckedCreateWithoutConnectionInput[]
-    connectOrCreate?: StoryCreateOrConnectWithoutConnectionInput | StoryCreateOrConnectWithoutConnectionInput[]
-    createMany?: StoryCreateManyConnectionInputEnvelope
-    connect?: StoryWhereUniqueInput | StoryWhereUniqueInput[]
-  }
-
   export type TimeCapsuleCreateNestedManyWithoutConnectionInput = {
     create?: XOR<TimeCapsuleCreateWithoutConnectionInput, TimeCapsuleUncheckedCreateWithoutConnectionInput> | TimeCapsuleCreateWithoutConnectionInput[] | TimeCapsuleUncheckedCreateWithoutConnectionInput[]
     connectOrCreate?: TimeCapsuleCreateOrConnectWithoutConnectionInput | TimeCapsuleCreateOrConnectWithoutConnectionInput[]
@@ -24779,13 +23131,6 @@ export namespace Prisma {
     connectOrCreate?: SurpriseCreateOrConnectWithoutConnectionInput | SurpriseCreateOrConnectWithoutConnectionInput[]
     createMany?: SurpriseCreateManyConnectionInputEnvelope
     connect?: SurpriseWhereUniqueInput | SurpriseWhereUniqueInput[]
-  }
-
-  export type StoryUncheckedCreateNestedManyWithoutConnectionInput = {
-    create?: XOR<StoryCreateWithoutConnectionInput, StoryUncheckedCreateWithoutConnectionInput> | StoryCreateWithoutConnectionInput[] | StoryUncheckedCreateWithoutConnectionInput[]
-    connectOrCreate?: StoryCreateOrConnectWithoutConnectionInput | StoryCreateOrConnectWithoutConnectionInput[]
-    createMany?: StoryCreateManyConnectionInputEnvelope
-    connect?: StoryWhereUniqueInput | StoryWhereUniqueInput[]
   }
 
   export type TimeCapsuleUncheckedCreateNestedManyWithoutConnectionInput = {
@@ -24914,20 +23259,6 @@ export namespace Prisma {
     deleteMany?: SurpriseScalarWhereInput | SurpriseScalarWhereInput[]
   }
 
-  export type StoryUpdateManyWithoutConnectionNestedInput = {
-    create?: XOR<StoryCreateWithoutConnectionInput, StoryUncheckedCreateWithoutConnectionInput> | StoryCreateWithoutConnectionInput[] | StoryUncheckedCreateWithoutConnectionInput[]
-    connectOrCreate?: StoryCreateOrConnectWithoutConnectionInput | StoryCreateOrConnectWithoutConnectionInput[]
-    upsert?: StoryUpsertWithWhereUniqueWithoutConnectionInput | StoryUpsertWithWhereUniqueWithoutConnectionInput[]
-    createMany?: StoryCreateManyConnectionInputEnvelope
-    set?: StoryWhereUniqueInput | StoryWhereUniqueInput[]
-    disconnect?: StoryWhereUniqueInput | StoryWhereUniqueInput[]
-    delete?: StoryWhereUniqueInput | StoryWhereUniqueInput[]
-    connect?: StoryWhereUniqueInput | StoryWhereUniqueInput[]
-    update?: StoryUpdateWithWhereUniqueWithoutConnectionInput | StoryUpdateWithWhereUniqueWithoutConnectionInput[]
-    updateMany?: StoryUpdateManyWithWhereWithoutConnectionInput | StoryUpdateManyWithWhereWithoutConnectionInput[]
-    deleteMany?: StoryScalarWhereInput | StoryScalarWhereInput[]
-  }
-
   export type TimeCapsuleUpdateManyWithoutConnectionNestedInput = {
     create?: XOR<TimeCapsuleCreateWithoutConnectionInput, TimeCapsuleUncheckedCreateWithoutConnectionInput> | TimeCapsuleCreateWithoutConnectionInput[] | TimeCapsuleUncheckedCreateWithoutConnectionInput[]
     connectOrCreate?: TimeCapsuleCreateOrConnectWithoutConnectionInput | TimeCapsuleCreateOrConnectWithoutConnectionInput[]
@@ -25048,20 +23379,6 @@ export namespace Prisma {
     update?: SurpriseUpdateWithWhereUniqueWithoutConnectionInput | SurpriseUpdateWithWhereUniqueWithoutConnectionInput[]
     updateMany?: SurpriseUpdateManyWithWhereWithoutConnectionInput | SurpriseUpdateManyWithWhereWithoutConnectionInput[]
     deleteMany?: SurpriseScalarWhereInput | SurpriseScalarWhereInput[]
-  }
-
-  export type StoryUncheckedUpdateManyWithoutConnectionNestedInput = {
-    create?: XOR<StoryCreateWithoutConnectionInput, StoryUncheckedCreateWithoutConnectionInput> | StoryCreateWithoutConnectionInput[] | StoryUncheckedCreateWithoutConnectionInput[]
-    connectOrCreate?: StoryCreateOrConnectWithoutConnectionInput | StoryCreateOrConnectWithoutConnectionInput[]
-    upsert?: StoryUpsertWithWhereUniqueWithoutConnectionInput | StoryUpsertWithWhereUniqueWithoutConnectionInput[]
-    createMany?: StoryCreateManyConnectionInputEnvelope
-    set?: StoryWhereUniqueInput | StoryWhereUniqueInput[]
-    disconnect?: StoryWhereUniqueInput | StoryWhereUniqueInput[]
-    delete?: StoryWhereUniqueInput | StoryWhereUniqueInput[]
-    connect?: StoryWhereUniqueInput | StoryWhereUniqueInput[]
-    update?: StoryUpdateWithWhereUniqueWithoutConnectionInput | StoryUpdateWithWhereUniqueWithoutConnectionInput[]
-    updateMany?: StoryUpdateManyWithWhereWithoutConnectionInput | StoryUpdateManyWithWhereWithoutConnectionInput[]
-    deleteMany?: StoryScalarWhereInput | StoryScalarWhereInput[]
   }
 
   export type TimeCapsuleUncheckedUpdateManyWithoutConnectionNestedInput = {
@@ -25334,34 +23651,6 @@ export namespace Prisma {
     upsert?: UserUpsertWithoutCommentsInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutCommentsInput, UserUpdateWithoutCommentsInput>, UserUncheckedUpdateWithoutCommentsInput>
-  }
-
-  export type UserCreateNestedOneWithoutStoriesInput = {
-    create?: XOR<UserCreateWithoutStoriesInput, UserUncheckedCreateWithoutStoriesInput>
-    connectOrCreate?: UserCreateOrConnectWithoutStoriesInput
-    connect?: UserWhereUniqueInput
-  }
-
-  export type ConnectionCreateNestedOneWithoutStoriesInput = {
-    create?: XOR<ConnectionCreateWithoutStoriesInput, ConnectionUncheckedCreateWithoutStoriesInput>
-    connectOrCreate?: ConnectionCreateOrConnectWithoutStoriesInput
-    connect?: ConnectionWhereUniqueInput
-  }
-
-  export type UserUpdateOneRequiredWithoutStoriesNestedInput = {
-    create?: XOR<UserCreateWithoutStoriesInput, UserUncheckedCreateWithoutStoriesInput>
-    connectOrCreate?: UserCreateOrConnectWithoutStoriesInput
-    upsert?: UserUpsertWithoutStoriesInput
-    connect?: UserWhereUniqueInput
-    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutStoriesInput, UserUpdateWithoutStoriesInput>, UserUncheckedUpdateWithoutStoriesInput>
-  }
-
-  export type ConnectionUpdateOneRequiredWithoutStoriesNestedInput = {
-    create?: XOR<ConnectionCreateWithoutStoriesInput, ConnectionUncheckedCreateWithoutStoriesInput>
-    connectOrCreate?: ConnectionCreateOrConnectWithoutStoriesInput
-    upsert?: ConnectionUpsertWithoutStoriesInput
-    connect?: ConnectionWhereUniqueInput
-    update?: XOR<XOR<ConnectionUpdateToOneWithWhereWithoutStoriesInput, ConnectionUpdateWithoutStoriesInput>, ConnectionUncheckedUpdateWithoutStoriesInput>
   }
 
   export type UserCreateNestedOneWithoutSurprisesInput = {
@@ -25806,7 +24095,6 @@ export namespace Prisma {
     dreams?: DreamCreateNestedManyWithoutConnectionInput
     tree?: TreeCreateNestedOneWithoutConnectionInput
     surprises?: SurpriseCreateNestedManyWithoutConnectionInput
-    stories?: StoryCreateNestedManyWithoutConnectionInput
     timeCapsules?: TimeCapsuleCreateNestedManyWithoutConnectionInput
     chatMessages?: ChatMessageCreateNestedManyWithoutConnectionInput
   }
@@ -25824,7 +24112,6 @@ export namespace Prisma {
     dreams?: DreamUncheckedCreateNestedManyWithoutConnectionInput
     tree?: TreeUncheckedCreateNestedOneWithoutConnectionInput
     surprises?: SurpriseUncheckedCreateNestedManyWithoutConnectionInput
-    stories?: StoryUncheckedCreateNestedManyWithoutConnectionInput
     timeCapsules?: TimeCapsuleUncheckedCreateNestedManyWithoutConnectionInput
     chatMessages?: ChatMessageUncheckedCreateNestedManyWithoutConnectionInput
   }
@@ -25852,7 +24139,6 @@ export namespace Prisma {
     dreams?: DreamCreateNestedManyWithoutConnectionInput
     tree?: TreeCreateNestedOneWithoutConnectionInput
     surprises?: SurpriseCreateNestedManyWithoutConnectionInput
-    stories?: StoryCreateNestedManyWithoutConnectionInput
     timeCapsules?: TimeCapsuleCreateNestedManyWithoutConnectionInput
     chatMessages?: ChatMessageCreateNestedManyWithoutConnectionInput
   }
@@ -25870,7 +24156,6 @@ export namespace Prisma {
     dreams?: DreamUncheckedCreateNestedManyWithoutConnectionInput
     tree?: TreeUncheckedCreateNestedOneWithoutConnectionInput
     surprises?: SurpriseUncheckedCreateNestedManyWithoutConnectionInput
-    stories?: StoryUncheckedCreateNestedManyWithoutConnectionInput
     timeCapsules?: TimeCapsuleUncheckedCreateNestedManyWithoutConnectionInput
     chatMessages?: ChatMessageUncheckedCreateNestedManyWithoutConnectionInput
   }
@@ -26144,44 +24429,6 @@ export namespace Prisma {
 
   export type SurpriseCreateManyUserInputEnvelope = {
     data: SurpriseCreateManyUserInput | SurpriseCreateManyUserInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type StoryCreateWithoutUserInput = {
-    id?: string
-    imageUrl?: string | null
-    videoUrl?: string | null
-    textContent?: string | null
-    bgColor?: string | null
-    createdAt?: Date | string
-    expiresAt: Date | string
-    isViewed?: boolean
-    viewedAt?: Date | string | null
-    reactions?: NullableJsonNullValueInput | InputJsonValue
-    connection: ConnectionCreateNestedOneWithoutStoriesInput
-  }
-
-  export type StoryUncheckedCreateWithoutUserInput = {
-    id?: string
-    imageUrl?: string | null
-    videoUrl?: string | null
-    textContent?: string | null
-    bgColor?: string | null
-    createdAt?: Date | string
-    expiresAt: Date | string
-    isViewed?: boolean
-    viewedAt?: Date | string | null
-    reactions?: NullableJsonNullValueInput | InputJsonValue
-    connectionId: string
-  }
-
-  export type StoryCreateOrConnectWithoutUserInput = {
-    where: StoryWhereUniqueInput
-    create: XOR<StoryCreateWithoutUserInput, StoryUncheckedCreateWithoutUserInput>
-  }
-
-  export type StoryCreateManyUserInputEnvelope = {
-    data: StoryCreateManyUserInput | StoryCreateManyUserInput[]
     skipDuplicates?: boolean
   }
 
@@ -26573,40 +24820,6 @@ export namespace Prisma {
     connectionId?: StringFilter<"Surprise"> | string
   }
 
-  export type StoryUpsertWithWhereUniqueWithoutUserInput = {
-    where: StoryWhereUniqueInput
-    update: XOR<StoryUpdateWithoutUserInput, StoryUncheckedUpdateWithoutUserInput>
-    create: XOR<StoryCreateWithoutUserInput, StoryUncheckedCreateWithoutUserInput>
-  }
-
-  export type StoryUpdateWithWhereUniqueWithoutUserInput = {
-    where: StoryWhereUniqueInput
-    data: XOR<StoryUpdateWithoutUserInput, StoryUncheckedUpdateWithoutUserInput>
-  }
-
-  export type StoryUpdateManyWithWhereWithoutUserInput = {
-    where: StoryScalarWhereInput
-    data: XOR<StoryUpdateManyMutationInput, StoryUncheckedUpdateManyWithoutUserInput>
-  }
-
-  export type StoryScalarWhereInput = {
-    AND?: StoryScalarWhereInput | StoryScalarWhereInput[]
-    OR?: StoryScalarWhereInput[]
-    NOT?: StoryScalarWhereInput | StoryScalarWhereInput[]
-    id?: StringFilter<"Story"> | string
-    imageUrl?: StringNullableFilter<"Story"> | string | null
-    videoUrl?: StringNullableFilter<"Story"> | string | null
-    textContent?: StringNullableFilter<"Story"> | string | null
-    bgColor?: StringNullableFilter<"Story"> | string | null
-    createdAt?: DateTimeFilter<"Story"> | Date | string
-    expiresAt?: DateTimeFilter<"Story"> | Date | string
-    isViewed?: BoolFilter<"Story"> | boolean
-    viewedAt?: DateTimeNullableFilter<"Story"> | Date | string | null
-    reactions?: JsonNullableFilter<"Story">
-    userId?: StringFilter<"Story"> | string
-    connectionId?: StringFilter<"Story"> | string
-  }
-
   export type TimeCapsuleUpsertWithWhereUniqueWithoutUserInput = {
     where: TimeCapsuleWhereUniqueInput
     update: XOR<TimeCapsuleUpdateWithoutUserInput, TimeCapsuleUncheckedUpdateWithoutUserInput>
@@ -26717,7 +24930,6 @@ export namespace Prisma {
     dreams?: DreamCreateNestedManyWithoutUserInput
     comments?: DreamCommentCreateNestedManyWithoutUserInput
     surprises?: SurpriseCreateNestedManyWithoutUserInput
-    stories?: StoryCreateNestedManyWithoutUserInput
     timeCapsules?: TimeCapsuleCreateNestedManyWithoutUserInput
     timeCapsuleComments?: TimeCapsuleCommentCreateNestedManyWithoutUserInput
     chatMessages?: ChatMessageCreateNestedManyWithoutUserInput
@@ -26742,7 +24954,6 @@ export namespace Prisma {
     dreams?: DreamUncheckedCreateNestedManyWithoutUserInput
     comments?: DreamCommentUncheckedCreateNestedManyWithoutUserInput
     surprises?: SurpriseUncheckedCreateNestedManyWithoutUserInput
-    stories?: StoryUncheckedCreateNestedManyWithoutUserInput
     timeCapsules?: TimeCapsuleUncheckedCreateNestedManyWithoutUserInput
     timeCapsuleComments?: TimeCapsuleCommentUncheckedCreateNestedManyWithoutUserInput
     chatMessages?: ChatMessageUncheckedCreateNestedManyWithoutUserInput
@@ -26783,7 +24994,6 @@ export namespace Prisma {
     dreams?: DreamUpdateManyWithoutUserNestedInput
     comments?: DreamCommentUpdateManyWithoutUserNestedInput
     surprises?: SurpriseUpdateManyWithoutUserNestedInput
-    stories?: StoryUpdateManyWithoutUserNestedInput
     timeCapsules?: TimeCapsuleUpdateManyWithoutUserNestedInput
     timeCapsuleComments?: TimeCapsuleCommentUpdateManyWithoutUserNestedInput
     chatMessages?: ChatMessageUpdateManyWithoutUserNestedInput
@@ -26808,7 +25018,6 @@ export namespace Prisma {
     dreams?: DreamUncheckedUpdateManyWithoutUserNestedInput
     comments?: DreamCommentUncheckedUpdateManyWithoutUserNestedInput
     surprises?: SurpriseUncheckedUpdateManyWithoutUserNestedInput
-    stories?: StoryUncheckedUpdateManyWithoutUserNestedInput
     timeCapsules?: TimeCapsuleUncheckedUpdateManyWithoutUserNestedInput
     timeCapsuleComments?: TimeCapsuleCommentUncheckedUpdateManyWithoutUserNestedInput
     chatMessages?: ChatMessageUncheckedUpdateManyWithoutUserNestedInput
@@ -26833,7 +25042,6 @@ export namespace Prisma {
     comments?: DreamCommentCreateNestedManyWithoutUserInput
     receivedNotifications?: NotificationCreateNestedManyWithoutUserInput
     surprises?: SurpriseCreateNestedManyWithoutUserInput
-    stories?: StoryCreateNestedManyWithoutUserInput
     timeCapsules?: TimeCapsuleCreateNestedManyWithoutUserInput
     timeCapsuleComments?: TimeCapsuleCommentCreateNestedManyWithoutUserInput
     chatMessages?: ChatMessageCreateNestedManyWithoutUserInput
@@ -26858,7 +25066,6 @@ export namespace Prisma {
     comments?: DreamCommentUncheckedCreateNestedManyWithoutUserInput
     receivedNotifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
     surprises?: SurpriseUncheckedCreateNestedManyWithoutUserInput
-    stories?: StoryUncheckedCreateNestedManyWithoutUserInput
     timeCapsules?: TimeCapsuleUncheckedCreateNestedManyWithoutUserInput
     timeCapsuleComments?: TimeCapsuleCommentUncheckedCreateNestedManyWithoutUserInput
     chatMessages?: ChatMessageUncheckedCreateNestedManyWithoutUserInput
@@ -26888,7 +25095,6 @@ export namespace Prisma {
     comments?: DreamCommentCreateNestedManyWithoutUserInput
     receivedNotifications?: NotificationCreateNestedManyWithoutUserInput
     surprises?: SurpriseCreateNestedManyWithoutUserInput
-    stories?: StoryCreateNestedManyWithoutUserInput
     timeCapsules?: TimeCapsuleCreateNestedManyWithoutUserInput
     timeCapsuleComments?: TimeCapsuleCommentCreateNestedManyWithoutUserInput
     chatMessages?: ChatMessageCreateNestedManyWithoutUserInput
@@ -26913,7 +25119,6 @@ export namespace Prisma {
     comments?: DreamCommentUncheckedCreateNestedManyWithoutUserInput
     receivedNotifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
     surprises?: SurpriseUncheckedCreateNestedManyWithoutUserInput
-    stories?: StoryUncheckedCreateNestedManyWithoutUserInput
     timeCapsules?: TimeCapsuleUncheckedCreateNestedManyWithoutUserInput
     timeCapsuleComments?: TimeCapsuleCommentUncheckedCreateNestedManyWithoutUserInput
     chatMessages?: ChatMessageUncheckedCreateNestedManyWithoutUserInput
@@ -27151,44 +25356,6 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type StoryCreateWithoutConnectionInput = {
-    id?: string
-    imageUrl?: string | null
-    videoUrl?: string | null
-    textContent?: string | null
-    bgColor?: string | null
-    createdAt?: Date | string
-    expiresAt: Date | string
-    isViewed?: boolean
-    viewedAt?: Date | string | null
-    reactions?: NullableJsonNullValueInput | InputJsonValue
-    user: UserCreateNestedOneWithoutStoriesInput
-  }
-
-  export type StoryUncheckedCreateWithoutConnectionInput = {
-    id?: string
-    imageUrl?: string | null
-    videoUrl?: string | null
-    textContent?: string | null
-    bgColor?: string | null
-    createdAt?: Date | string
-    expiresAt: Date | string
-    isViewed?: boolean
-    viewedAt?: Date | string | null
-    reactions?: NullableJsonNullValueInput | InputJsonValue
-    userId: string
-  }
-
-  export type StoryCreateOrConnectWithoutConnectionInput = {
-    where: StoryWhereUniqueInput
-    create: XOR<StoryCreateWithoutConnectionInput, StoryUncheckedCreateWithoutConnectionInput>
-  }
-
-  export type StoryCreateManyConnectionInputEnvelope = {
-    data: StoryCreateManyConnectionInput | StoryCreateManyConnectionInput[]
-    skipDuplicates?: boolean
-  }
-
   export type TimeCapsuleCreateWithoutConnectionInput = {
     id?: string
     title: string
@@ -27287,7 +25454,6 @@ export namespace Prisma {
     comments?: DreamCommentUpdateManyWithoutUserNestedInput
     receivedNotifications?: NotificationUpdateManyWithoutUserNestedInput
     surprises?: SurpriseUpdateManyWithoutUserNestedInput
-    stories?: StoryUpdateManyWithoutUserNestedInput
     timeCapsules?: TimeCapsuleUpdateManyWithoutUserNestedInput
     timeCapsuleComments?: TimeCapsuleCommentUpdateManyWithoutUserNestedInput
     chatMessages?: ChatMessageUpdateManyWithoutUserNestedInput
@@ -27312,7 +25478,6 @@ export namespace Prisma {
     comments?: DreamCommentUncheckedUpdateManyWithoutUserNestedInput
     receivedNotifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
     surprises?: SurpriseUncheckedUpdateManyWithoutUserNestedInput
-    stories?: StoryUncheckedUpdateManyWithoutUserNestedInput
     timeCapsules?: TimeCapsuleUncheckedUpdateManyWithoutUserNestedInput
     timeCapsuleComments?: TimeCapsuleCommentUncheckedUpdateManyWithoutUserNestedInput
     chatMessages?: ChatMessageUncheckedUpdateManyWithoutUserNestedInput
@@ -27348,7 +25513,6 @@ export namespace Prisma {
     comments?: DreamCommentUpdateManyWithoutUserNestedInput
     receivedNotifications?: NotificationUpdateManyWithoutUserNestedInput
     surprises?: SurpriseUpdateManyWithoutUserNestedInput
-    stories?: StoryUpdateManyWithoutUserNestedInput
     timeCapsules?: TimeCapsuleUpdateManyWithoutUserNestedInput
     timeCapsuleComments?: TimeCapsuleCommentUpdateManyWithoutUserNestedInput
     chatMessages?: ChatMessageUpdateManyWithoutUserNestedInput
@@ -27373,7 +25537,6 @@ export namespace Prisma {
     comments?: DreamCommentUncheckedUpdateManyWithoutUserNestedInput
     receivedNotifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
     surprises?: SurpriseUncheckedUpdateManyWithoutUserNestedInput
-    stories?: StoryUncheckedUpdateManyWithoutUserNestedInput
     timeCapsules?: TimeCapsuleUncheckedUpdateManyWithoutUserNestedInput
     timeCapsuleComments?: TimeCapsuleCommentUncheckedUpdateManyWithoutUserNestedInput
     chatMessages?: ChatMessageUncheckedUpdateManyWithoutUserNestedInput
@@ -27504,22 +25667,6 @@ export namespace Prisma {
     data: XOR<SurpriseUpdateManyMutationInput, SurpriseUncheckedUpdateManyWithoutConnectionInput>
   }
 
-  export type StoryUpsertWithWhereUniqueWithoutConnectionInput = {
-    where: StoryWhereUniqueInput
-    update: XOR<StoryUpdateWithoutConnectionInput, StoryUncheckedUpdateWithoutConnectionInput>
-    create: XOR<StoryCreateWithoutConnectionInput, StoryUncheckedCreateWithoutConnectionInput>
-  }
-
-  export type StoryUpdateWithWhereUniqueWithoutConnectionInput = {
-    where: StoryWhereUniqueInput
-    data: XOR<StoryUpdateWithoutConnectionInput, StoryUncheckedUpdateWithoutConnectionInput>
-  }
-
-  export type StoryUpdateManyWithWhereWithoutConnectionInput = {
-    where: StoryScalarWhereInput
-    data: XOR<StoryUpdateManyMutationInput, StoryUncheckedUpdateManyWithoutConnectionInput>
-  }
-
   export type TimeCapsuleUpsertWithWhereUniqueWithoutConnectionInput = {
     where: TimeCapsuleWhereUniqueInput
     update: XOR<TimeCapsuleUpdateWithoutConnectionInput, TimeCapsuleUncheckedUpdateWithoutConnectionInput>
@@ -27565,7 +25712,6 @@ export namespace Prisma {
     goals?: GoalCreateNestedManyWithoutConnectionInput
     dreams?: DreamCreateNestedManyWithoutConnectionInput
     surprises?: SurpriseCreateNestedManyWithoutConnectionInput
-    stories?: StoryCreateNestedManyWithoutConnectionInput
     timeCapsules?: TimeCapsuleCreateNestedManyWithoutConnectionInput
     chatMessages?: ChatMessageCreateNestedManyWithoutConnectionInput
   }
@@ -27583,7 +25729,6 @@ export namespace Prisma {
     goals?: GoalUncheckedCreateNestedManyWithoutConnectionInput
     dreams?: DreamUncheckedCreateNestedManyWithoutConnectionInput
     surprises?: SurpriseUncheckedCreateNestedManyWithoutConnectionInput
-    stories?: StoryUncheckedCreateNestedManyWithoutConnectionInput
     timeCapsules?: TimeCapsuleUncheckedCreateNestedManyWithoutConnectionInput
     chatMessages?: ChatMessageUncheckedCreateNestedManyWithoutConnectionInput
   }
@@ -27617,7 +25762,6 @@ export namespace Prisma {
     goals?: GoalUpdateManyWithoutConnectionNestedInput
     dreams?: DreamUpdateManyWithoutConnectionNestedInput
     surprises?: SurpriseUpdateManyWithoutConnectionNestedInput
-    stories?: StoryUpdateManyWithoutConnectionNestedInput
     timeCapsules?: TimeCapsuleUpdateManyWithoutConnectionNestedInput
     chatMessages?: ChatMessageUpdateManyWithoutConnectionNestedInput
   }
@@ -27635,7 +25779,6 @@ export namespace Prisma {
     goals?: GoalUncheckedUpdateManyWithoutConnectionNestedInput
     dreams?: DreamUncheckedUpdateManyWithoutConnectionNestedInput
     surprises?: SurpriseUncheckedUpdateManyWithoutConnectionNestedInput
-    stories?: StoryUncheckedUpdateManyWithoutConnectionNestedInput
     timeCapsules?: TimeCapsuleUncheckedUpdateManyWithoutConnectionNestedInput
     chatMessages?: ChatMessageUncheckedUpdateManyWithoutConnectionNestedInput
   }
@@ -27659,7 +25802,6 @@ export namespace Prisma {
     comments?: DreamCommentCreateNestedManyWithoutUserInput
     receivedNotifications?: NotificationCreateNestedManyWithoutUserInput
     surprises?: SurpriseCreateNestedManyWithoutUserInput
-    stories?: StoryCreateNestedManyWithoutUserInput
     timeCapsules?: TimeCapsuleCreateNestedManyWithoutUserInput
     timeCapsuleComments?: TimeCapsuleCommentCreateNestedManyWithoutUserInput
     chatMessages?: ChatMessageCreateNestedManyWithoutUserInput
@@ -27684,7 +25826,6 @@ export namespace Prisma {
     comments?: DreamCommentUncheckedCreateNestedManyWithoutUserInput
     receivedNotifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
     surprises?: SurpriseUncheckedCreateNestedManyWithoutUserInput
-    stories?: StoryUncheckedCreateNestedManyWithoutUserInput
     timeCapsules?: TimeCapsuleUncheckedCreateNestedManyWithoutUserInput
     timeCapsuleComments?: TimeCapsuleCommentUncheckedCreateNestedManyWithoutUserInput
     chatMessages?: ChatMessageUncheckedCreateNestedManyWithoutUserInput
@@ -27708,7 +25849,6 @@ export namespace Prisma {
     dreams?: DreamCreateNestedManyWithoutConnectionInput
     tree?: TreeCreateNestedOneWithoutConnectionInput
     surprises?: SurpriseCreateNestedManyWithoutConnectionInput
-    stories?: StoryCreateNestedManyWithoutConnectionInput
     timeCapsules?: TimeCapsuleCreateNestedManyWithoutConnectionInput
     chatMessages?: ChatMessageCreateNestedManyWithoutConnectionInput
   }
@@ -27726,7 +25866,6 @@ export namespace Prisma {
     dreams?: DreamUncheckedCreateNestedManyWithoutConnectionInput
     tree?: TreeUncheckedCreateNestedOneWithoutConnectionInput
     surprises?: SurpriseUncheckedCreateNestedManyWithoutConnectionInput
-    stories?: StoryUncheckedCreateNestedManyWithoutConnectionInput
     timeCapsules?: TimeCapsuleUncheckedCreateNestedManyWithoutConnectionInput
     chatMessages?: ChatMessageUncheckedCreateNestedManyWithoutConnectionInput
   }
@@ -27766,7 +25905,6 @@ export namespace Prisma {
     comments?: DreamCommentUpdateManyWithoutUserNestedInput
     receivedNotifications?: NotificationUpdateManyWithoutUserNestedInput
     surprises?: SurpriseUpdateManyWithoutUserNestedInput
-    stories?: StoryUpdateManyWithoutUserNestedInput
     timeCapsules?: TimeCapsuleUpdateManyWithoutUserNestedInput
     timeCapsuleComments?: TimeCapsuleCommentUpdateManyWithoutUserNestedInput
     chatMessages?: ChatMessageUpdateManyWithoutUserNestedInput
@@ -27791,7 +25929,6 @@ export namespace Prisma {
     comments?: DreamCommentUncheckedUpdateManyWithoutUserNestedInput
     receivedNotifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
     surprises?: SurpriseUncheckedUpdateManyWithoutUserNestedInput
-    stories?: StoryUncheckedUpdateManyWithoutUserNestedInput
     timeCapsules?: TimeCapsuleUncheckedUpdateManyWithoutUserNestedInput
     timeCapsuleComments?: TimeCapsuleCommentUncheckedUpdateManyWithoutUserNestedInput
     chatMessages?: ChatMessageUncheckedUpdateManyWithoutUserNestedInput
@@ -27821,7 +25958,6 @@ export namespace Prisma {
     dreams?: DreamUpdateManyWithoutConnectionNestedInput
     tree?: TreeUpdateOneWithoutConnectionNestedInput
     surprises?: SurpriseUpdateManyWithoutConnectionNestedInput
-    stories?: StoryUpdateManyWithoutConnectionNestedInput
     timeCapsules?: TimeCapsuleUpdateManyWithoutConnectionNestedInput
     chatMessages?: ChatMessageUpdateManyWithoutConnectionNestedInput
   }
@@ -27839,7 +25975,6 @@ export namespace Prisma {
     dreams?: DreamUncheckedUpdateManyWithoutConnectionNestedInput
     tree?: TreeUncheckedUpdateOneWithoutConnectionNestedInput
     surprises?: SurpriseUncheckedUpdateManyWithoutConnectionNestedInput
-    stories?: StoryUncheckedUpdateManyWithoutConnectionNestedInput
     timeCapsules?: TimeCapsuleUncheckedUpdateManyWithoutConnectionNestedInput
     chatMessages?: ChatMessageUncheckedUpdateManyWithoutConnectionNestedInput
   }
@@ -27863,7 +25998,6 @@ export namespace Prisma {
     comments?: DreamCommentCreateNestedManyWithoutUserInput
     receivedNotifications?: NotificationCreateNestedManyWithoutUserInput
     surprises?: SurpriseCreateNestedManyWithoutUserInput
-    stories?: StoryCreateNestedManyWithoutUserInput
     timeCapsules?: TimeCapsuleCreateNestedManyWithoutUserInput
     timeCapsuleComments?: TimeCapsuleCommentCreateNestedManyWithoutUserInput
     chatMessages?: ChatMessageCreateNestedManyWithoutUserInput
@@ -27888,7 +26022,6 @@ export namespace Prisma {
     comments?: DreamCommentUncheckedCreateNestedManyWithoutUserInput
     receivedNotifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
     surprises?: SurpriseUncheckedCreateNestedManyWithoutUserInput
-    stories?: StoryUncheckedCreateNestedManyWithoutUserInput
     timeCapsules?: TimeCapsuleUncheckedCreateNestedManyWithoutUserInput
     timeCapsuleComments?: TimeCapsuleCommentUncheckedCreateNestedManyWithoutUserInput
     chatMessages?: ChatMessageUncheckedCreateNestedManyWithoutUserInput
@@ -27912,7 +26045,6 @@ export namespace Prisma {
     dreams?: DreamCreateNestedManyWithoutConnectionInput
     tree?: TreeCreateNestedOneWithoutConnectionInput
     surprises?: SurpriseCreateNestedManyWithoutConnectionInput
-    stories?: StoryCreateNestedManyWithoutConnectionInput
     timeCapsules?: TimeCapsuleCreateNestedManyWithoutConnectionInput
     chatMessages?: ChatMessageCreateNestedManyWithoutConnectionInput
   }
@@ -27930,7 +26062,6 @@ export namespace Prisma {
     dreams?: DreamUncheckedCreateNestedManyWithoutConnectionInput
     tree?: TreeUncheckedCreateNestedOneWithoutConnectionInput
     surprises?: SurpriseUncheckedCreateNestedManyWithoutConnectionInput
-    stories?: StoryUncheckedCreateNestedManyWithoutConnectionInput
     timeCapsules?: TimeCapsuleUncheckedCreateNestedManyWithoutConnectionInput
     chatMessages?: ChatMessageUncheckedCreateNestedManyWithoutConnectionInput
   }
@@ -27970,7 +26101,6 @@ export namespace Prisma {
     comments?: DreamCommentUpdateManyWithoutUserNestedInput
     receivedNotifications?: NotificationUpdateManyWithoutUserNestedInput
     surprises?: SurpriseUpdateManyWithoutUserNestedInput
-    stories?: StoryUpdateManyWithoutUserNestedInput
     timeCapsules?: TimeCapsuleUpdateManyWithoutUserNestedInput
     timeCapsuleComments?: TimeCapsuleCommentUpdateManyWithoutUserNestedInput
     chatMessages?: ChatMessageUpdateManyWithoutUserNestedInput
@@ -27995,7 +26125,6 @@ export namespace Prisma {
     comments?: DreamCommentUncheckedUpdateManyWithoutUserNestedInput
     receivedNotifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
     surprises?: SurpriseUncheckedUpdateManyWithoutUserNestedInput
-    stories?: StoryUncheckedUpdateManyWithoutUserNestedInput
     timeCapsules?: TimeCapsuleUncheckedUpdateManyWithoutUserNestedInput
     timeCapsuleComments?: TimeCapsuleCommentUncheckedUpdateManyWithoutUserNestedInput
     chatMessages?: ChatMessageUncheckedUpdateManyWithoutUserNestedInput
@@ -28025,7 +26154,6 @@ export namespace Prisma {
     dreams?: DreamUpdateManyWithoutConnectionNestedInput
     tree?: TreeUpdateOneWithoutConnectionNestedInput
     surprises?: SurpriseUpdateManyWithoutConnectionNestedInput
-    stories?: StoryUpdateManyWithoutConnectionNestedInput
     timeCapsules?: TimeCapsuleUpdateManyWithoutConnectionNestedInput
     chatMessages?: ChatMessageUpdateManyWithoutConnectionNestedInput
   }
@@ -28043,7 +26171,6 @@ export namespace Prisma {
     dreams?: DreamUncheckedUpdateManyWithoutConnectionNestedInput
     tree?: TreeUncheckedUpdateOneWithoutConnectionNestedInput
     surprises?: SurpriseUncheckedUpdateManyWithoutConnectionNestedInput
-    stories?: StoryUncheckedUpdateManyWithoutConnectionNestedInput
     timeCapsules?: TimeCapsuleUncheckedUpdateManyWithoutConnectionNestedInput
     chatMessages?: ChatMessageUncheckedUpdateManyWithoutConnectionNestedInput
   }
@@ -28067,7 +26194,6 @@ export namespace Prisma {
     comments?: DreamCommentCreateNestedManyWithoutUserInput
     receivedNotifications?: NotificationCreateNestedManyWithoutUserInput
     surprises?: SurpriseCreateNestedManyWithoutUserInput
-    stories?: StoryCreateNestedManyWithoutUserInput
     timeCapsules?: TimeCapsuleCreateNestedManyWithoutUserInput
     timeCapsuleComments?: TimeCapsuleCommentCreateNestedManyWithoutUserInput
     chatMessages?: ChatMessageCreateNestedManyWithoutUserInput
@@ -28092,7 +26218,6 @@ export namespace Prisma {
     comments?: DreamCommentUncheckedCreateNestedManyWithoutUserInput
     receivedNotifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
     surprises?: SurpriseUncheckedCreateNestedManyWithoutUserInput
-    stories?: StoryUncheckedCreateNestedManyWithoutUserInput
     timeCapsules?: TimeCapsuleUncheckedCreateNestedManyWithoutUserInput
     timeCapsuleComments?: TimeCapsuleCommentUncheckedCreateNestedManyWithoutUserInput
     chatMessages?: ChatMessageUncheckedCreateNestedManyWithoutUserInput
@@ -28116,7 +26241,6 @@ export namespace Prisma {
     dreams?: DreamCreateNestedManyWithoutConnectionInput
     tree?: TreeCreateNestedOneWithoutConnectionInput
     surprises?: SurpriseCreateNestedManyWithoutConnectionInput
-    stories?: StoryCreateNestedManyWithoutConnectionInput
     timeCapsules?: TimeCapsuleCreateNestedManyWithoutConnectionInput
     chatMessages?: ChatMessageCreateNestedManyWithoutConnectionInput
   }
@@ -28134,7 +26258,6 @@ export namespace Prisma {
     dreams?: DreamUncheckedCreateNestedManyWithoutConnectionInput
     tree?: TreeUncheckedCreateNestedOneWithoutConnectionInput
     surprises?: SurpriseUncheckedCreateNestedManyWithoutConnectionInput
-    stories?: StoryUncheckedCreateNestedManyWithoutConnectionInput
     timeCapsules?: TimeCapsuleUncheckedCreateNestedManyWithoutConnectionInput
     chatMessages?: ChatMessageUncheckedCreateNestedManyWithoutConnectionInput
   }
@@ -28174,7 +26297,6 @@ export namespace Prisma {
     comments?: DreamCommentUpdateManyWithoutUserNestedInput
     receivedNotifications?: NotificationUpdateManyWithoutUserNestedInput
     surprises?: SurpriseUpdateManyWithoutUserNestedInput
-    stories?: StoryUpdateManyWithoutUserNestedInput
     timeCapsules?: TimeCapsuleUpdateManyWithoutUserNestedInput
     timeCapsuleComments?: TimeCapsuleCommentUpdateManyWithoutUserNestedInput
     chatMessages?: ChatMessageUpdateManyWithoutUserNestedInput
@@ -28199,7 +26321,6 @@ export namespace Prisma {
     comments?: DreamCommentUncheckedUpdateManyWithoutUserNestedInput
     receivedNotifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
     surprises?: SurpriseUncheckedUpdateManyWithoutUserNestedInput
-    stories?: StoryUncheckedUpdateManyWithoutUserNestedInput
     timeCapsules?: TimeCapsuleUncheckedUpdateManyWithoutUserNestedInput
     timeCapsuleComments?: TimeCapsuleCommentUncheckedUpdateManyWithoutUserNestedInput
     chatMessages?: ChatMessageUncheckedUpdateManyWithoutUserNestedInput
@@ -28229,7 +26350,6 @@ export namespace Prisma {
     dreams?: DreamUpdateManyWithoutConnectionNestedInput
     tree?: TreeUpdateOneWithoutConnectionNestedInput
     surprises?: SurpriseUpdateManyWithoutConnectionNestedInput
-    stories?: StoryUpdateManyWithoutConnectionNestedInput
     timeCapsules?: TimeCapsuleUpdateManyWithoutConnectionNestedInput
     chatMessages?: ChatMessageUpdateManyWithoutConnectionNestedInput
   }
@@ -28247,7 +26367,6 @@ export namespace Prisma {
     dreams?: DreamUncheckedUpdateManyWithoutConnectionNestedInput
     tree?: TreeUncheckedUpdateOneWithoutConnectionNestedInput
     surprises?: SurpriseUncheckedUpdateManyWithoutConnectionNestedInput
-    stories?: StoryUncheckedUpdateManyWithoutConnectionNestedInput
     timeCapsules?: TimeCapsuleUncheckedUpdateManyWithoutConnectionNestedInput
     chatMessages?: ChatMessageUncheckedUpdateManyWithoutConnectionNestedInput
   }
@@ -28271,7 +26390,6 @@ export namespace Prisma {
     comments?: DreamCommentCreateNestedManyWithoutUserInput
     receivedNotifications?: NotificationCreateNestedManyWithoutUserInput
     surprises?: SurpriseCreateNestedManyWithoutUserInput
-    stories?: StoryCreateNestedManyWithoutUserInput
     timeCapsules?: TimeCapsuleCreateNestedManyWithoutUserInput
     timeCapsuleComments?: TimeCapsuleCommentCreateNestedManyWithoutUserInput
     chatMessages?: ChatMessageCreateNestedManyWithoutUserInput
@@ -28296,7 +26414,6 @@ export namespace Prisma {
     comments?: DreamCommentUncheckedCreateNestedManyWithoutUserInput
     receivedNotifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
     surprises?: SurpriseUncheckedCreateNestedManyWithoutUserInput
-    stories?: StoryUncheckedCreateNestedManyWithoutUserInput
     timeCapsules?: TimeCapsuleUncheckedCreateNestedManyWithoutUserInput
     timeCapsuleComments?: TimeCapsuleCommentUncheckedCreateNestedManyWithoutUserInput
     chatMessages?: ChatMessageUncheckedCreateNestedManyWithoutUserInput
@@ -28320,7 +26437,6 @@ export namespace Prisma {
     dreams?: DreamCreateNestedManyWithoutConnectionInput
     tree?: TreeCreateNestedOneWithoutConnectionInput
     surprises?: SurpriseCreateNestedManyWithoutConnectionInput
-    stories?: StoryCreateNestedManyWithoutConnectionInput
     timeCapsules?: TimeCapsuleCreateNestedManyWithoutConnectionInput
     chatMessages?: ChatMessageCreateNestedManyWithoutConnectionInput
   }
@@ -28338,7 +26454,6 @@ export namespace Prisma {
     dreams?: DreamUncheckedCreateNestedManyWithoutConnectionInput
     tree?: TreeUncheckedCreateNestedOneWithoutConnectionInput
     surprises?: SurpriseUncheckedCreateNestedManyWithoutConnectionInput
-    stories?: StoryUncheckedCreateNestedManyWithoutConnectionInput
     timeCapsules?: TimeCapsuleUncheckedCreateNestedManyWithoutConnectionInput
     chatMessages?: ChatMessageUncheckedCreateNestedManyWithoutConnectionInput
   }
@@ -28378,7 +26493,6 @@ export namespace Prisma {
     comments?: DreamCommentUpdateManyWithoutUserNestedInput
     receivedNotifications?: NotificationUpdateManyWithoutUserNestedInput
     surprises?: SurpriseUpdateManyWithoutUserNestedInput
-    stories?: StoryUpdateManyWithoutUserNestedInput
     timeCapsules?: TimeCapsuleUpdateManyWithoutUserNestedInput
     timeCapsuleComments?: TimeCapsuleCommentUpdateManyWithoutUserNestedInput
     chatMessages?: ChatMessageUpdateManyWithoutUserNestedInput
@@ -28403,7 +26517,6 @@ export namespace Prisma {
     comments?: DreamCommentUncheckedUpdateManyWithoutUserNestedInput
     receivedNotifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
     surprises?: SurpriseUncheckedUpdateManyWithoutUserNestedInput
-    stories?: StoryUncheckedUpdateManyWithoutUserNestedInput
     timeCapsules?: TimeCapsuleUncheckedUpdateManyWithoutUserNestedInput
     timeCapsuleComments?: TimeCapsuleCommentUncheckedUpdateManyWithoutUserNestedInput
     chatMessages?: ChatMessageUncheckedUpdateManyWithoutUserNestedInput
@@ -28433,7 +26546,6 @@ export namespace Prisma {
     dreams?: DreamUpdateManyWithoutConnectionNestedInput
     tree?: TreeUpdateOneWithoutConnectionNestedInput
     surprises?: SurpriseUpdateManyWithoutConnectionNestedInput
-    stories?: StoryUpdateManyWithoutConnectionNestedInput
     timeCapsules?: TimeCapsuleUpdateManyWithoutConnectionNestedInput
     chatMessages?: ChatMessageUpdateManyWithoutConnectionNestedInput
   }
@@ -28451,7 +26563,6 @@ export namespace Prisma {
     dreams?: DreamUncheckedUpdateManyWithoutConnectionNestedInput
     tree?: TreeUncheckedUpdateOneWithoutConnectionNestedInput
     surprises?: SurpriseUncheckedUpdateManyWithoutConnectionNestedInput
-    stories?: StoryUncheckedUpdateManyWithoutConnectionNestedInput
     timeCapsules?: TimeCapsuleUncheckedUpdateManyWithoutConnectionNestedInput
     chatMessages?: ChatMessageUncheckedUpdateManyWithoutConnectionNestedInput
   }
@@ -28475,7 +26586,6 @@ export namespace Prisma {
     comments?: DreamCommentCreateNestedManyWithoutUserInput
     receivedNotifications?: NotificationCreateNestedManyWithoutUserInput
     surprises?: SurpriseCreateNestedManyWithoutUserInput
-    stories?: StoryCreateNestedManyWithoutUserInput
     timeCapsules?: TimeCapsuleCreateNestedManyWithoutUserInput
     timeCapsuleComments?: TimeCapsuleCommentCreateNestedManyWithoutUserInput
     chatMessages?: ChatMessageCreateNestedManyWithoutUserInput
@@ -28500,7 +26610,6 @@ export namespace Prisma {
     comments?: DreamCommentUncheckedCreateNestedManyWithoutUserInput
     receivedNotifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
     surprises?: SurpriseUncheckedCreateNestedManyWithoutUserInput
-    stories?: StoryUncheckedCreateNestedManyWithoutUserInput
     timeCapsules?: TimeCapsuleUncheckedCreateNestedManyWithoutUserInput
     timeCapsuleComments?: TimeCapsuleCommentUncheckedCreateNestedManyWithoutUserInput
     chatMessages?: ChatMessageUncheckedCreateNestedManyWithoutUserInput
@@ -28524,7 +26633,6 @@ export namespace Prisma {
     goals?: GoalCreateNestedManyWithoutConnectionInput
     tree?: TreeCreateNestedOneWithoutConnectionInput
     surprises?: SurpriseCreateNestedManyWithoutConnectionInput
-    stories?: StoryCreateNestedManyWithoutConnectionInput
     timeCapsules?: TimeCapsuleCreateNestedManyWithoutConnectionInput
     chatMessages?: ChatMessageCreateNestedManyWithoutConnectionInput
   }
@@ -28542,7 +26650,6 @@ export namespace Prisma {
     goals?: GoalUncheckedCreateNestedManyWithoutConnectionInput
     tree?: TreeUncheckedCreateNestedOneWithoutConnectionInput
     surprises?: SurpriseUncheckedCreateNestedManyWithoutConnectionInput
-    stories?: StoryUncheckedCreateNestedManyWithoutConnectionInput
     timeCapsules?: TimeCapsuleUncheckedCreateNestedManyWithoutConnectionInput
     chatMessages?: ChatMessageUncheckedCreateNestedManyWithoutConnectionInput
   }
@@ -28608,7 +26715,6 @@ export namespace Prisma {
     comments?: DreamCommentUpdateManyWithoutUserNestedInput
     receivedNotifications?: NotificationUpdateManyWithoutUserNestedInput
     surprises?: SurpriseUpdateManyWithoutUserNestedInput
-    stories?: StoryUpdateManyWithoutUserNestedInput
     timeCapsules?: TimeCapsuleUpdateManyWithoutUserNestedInput
     timeCapsuleComments?: TimeCapsuleCommentUpdateManyWithoutUserNestedInput
     chatMessages?: ChatMessageUpdateManyWithoutUserNestedInput
@@ -28633,7 +26739,6 @@ export namespace Prisma {
     comments?: DreamCommentUncheckedUpdateManyWithoutUserNestedInput
     receivedNotifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
     surprises?: SurpriseUncheckedUpdateManyWithoutUserNestedInput
-    stories?: StoryUncheckedUpdateManyWithoutUserNestedInput
     timeCapsules?: TimeCapsuleUncheckedUpdateManyWithoutUserNestedInput
     timeCapsuleComments?: TimeCapsuleCommentUncheckedUpdateManyWithoutUserNestedInput
     chatMessages?: ChatMessageUncheckedUpdateManyWithoutUserNestedInput
@@ -28663,7 +26768,6 @@ export namespace Prisma {
     goals?: GoalUpdateManyWithoutConnectionNestedInput
     tree?: TreeUpdateOneWithoutConnectionNestedInput
     surprises?: SurpriseUpdateManyWithoutConnectionNestedInput
-    stories?: StoryUpdateManyWithoutConnectionNestedInput
     timeCapsules?: TimeCapsuleUpdateManyWithoutConnectionNestedInput
     chatMessages?: ChatMessageUpdateManyWithoutConnectionNestedInput
   }
@@ -28681,7 +26785,6 @@ export namespace Prisma {
     goals?: GoalUncheckedUpdateManyWithoutConnectionNestedInput
     tree?: TreeUncheckedUpdateOneWithoutConnectionNestedInput
     surprises?: SurpriseUncheckedUpdateManyWithoutConnectionNestedInput
-    stories?: StoryUncheckedUpdateManyWithoutConnectionNestedInput
     timeCapsules?: TimeCapsuleUncheckedUpdateManyWithoutConnectionNestedInput
     chatMessages?: ChatMessageUncheckedUpdateManyWithoutConnectionNestedInput
   }
@@ -28754,7 +26857,6 @@ export namespace Prisma {
     dreams?: DreamCreateNestedManyWithoutUserInput
     receivedNotifications?: NotificationCreateNestedManyWithoutUserInput
     surprises?: SurpriseCreateNestedManyWithoutUserInput
-    stories?: StoryCreateNestedManyWithoutUserInput
     timeCapsules?: TimeCapsuleCreateNestedManyWithoutUserInput
     timeCapsuleComments?: TimeCapsuleCommentCreateNestedManyWithoutUserInput
     chatMessages?: ChatMessageCreateNestedManyWithoutUserInput
@@ -28779,7 +26881,6 @@ export namespace Prisma {
     dreams?: DreamUncheckedCreateNestedManyWithoutUserInput
     receivedNotifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
     surprises?: SurpriseUncheckedCreateNestedManyWithoutUserInput
-    stories?: StoryUncheckedCreateNestedManyWithoutUserInput
     timeCapsules?: TimeCapsuleUncheckedCreateNestedManyWithoutUserInput
     timeCapsuleComments?: TimeCapsuleCommentUncheckedCreateNestedManyWithoutUserInput
     chatMessages?: ChatMessageUncheckedCreateNestedManyWithoutUserInput
@@ -28859,7 +26960,6 @@ export namespace Prisma {
     dreams?: DreamUpdateManyWithoutUserNestedInput
     receivedNotifications?: NotificationUpdateManyWithoutUserNestedInput
     surprises?: SurpriseUpdateManyWithoutUserNestedInput
-    stories?: StoryUpdateManyWithoutUserNestedInput
     timeCapsules?: TimeCapsuleUpdateManyWithoutUserNestedInput
     timeCapsuleComments?: TimeCapsuleCommentUpdateManyWithoutUserNestedInput
     chatMessages?: ChatMessageUpdateManyWithoutUserNestedInput
@@ -28884,214 +26984,9 @@ export namespace Prisma {
     dreams?: DreamUncheckedUpdateManyWithoutUserNestedInput
     receivedNotifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
     surprises?: SurpriseUncheckedUpdateManyWithoutUserNestedInput
-    stories?: StoryUncheckedUpdateManyWithoutUserNestedInput
     timeCapsules?: TimeCapsuleUncheckedUpdateManyWithoutUserNestedInput
     timeCapsuleComments?: TimeCapsuleCommentUncheckedUpdateManyWithoutUserNestedInput
     chatMessages?: ChatMessageUncheckedUpdateManyWithoutUserNestedInput
-  }
-
-  export type UserCreateWithoutStoriesInput = {
-    id?: string
-    email: string
-    name?: string | null
-    image?: string | null
-    password?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    role?: $Enums.UserRole
-    fcmToken?: string | null
-    connections?: ConnectionCreateNestedManyWithoutUserInput
-    pairedWith?: ConnectionCreateNestedManyWithoutPairedWithInput
-    memories?: MemoryCreateNestedManyWithoutUserInput
-    notes?: NoteCreateNestedManyWithoutAuthorInput
-    specialDays?: SpecialDayCreateNestedManyWithoutUserInput
-    goals?: GoalCreateNestedManyWithoutUserInput
-    dreams?: DreamCreateNestedManyWithoutUserInput
-    comments?: DreamCommentCreateNestedManyWithoutUserInput
-    receivedNotifications?: NotificationCreateNestedManyWithoutUserInput
-    surprises?: SurpriseCreateNestedManyWithoutUserInput
-    timeCapsules?: TimeCapsuleCreateNestedManyWithoutUserInput
-    timeCapsuleComments?: TimeCapsuleCommentCreateNestedManyWithoutUserInput
-    chatMessages?: ChatMessageCreateNestedManyWithoutUserInput
-  }
-
-  export type UserUncheckedCreateWithoutStoriesInput = {
-    id?: string
-    email: string
-    name?: string | null
-    image?: string | null
-    password?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    role?: $Enums.UserRole
-    fcmToken?: string | null
-    connections?: ConnectionUncheckedCreateNestedManyWithoutUserInput
-    pairedWith?: ConnectionUncheckedCreateNestedManyWithoutPairedWithInput
-    memories?: MemoryUncheckedCreateNestedManyWithoutUserInput
-    notes?: NoteUncheckedCreateNestedManyWithoutAuthorInput
-    specialDays?: SpecialDayUncheckedCreateNestedManyWithoutUserInput
-    goals?: GoalUncheckedCreateNestedManyWithoutUserInput
-    dreams?: DreamUncheckedCreateNestedManyWithoutUserInput
-    comments?: DreamCommentUncheckedCreateNestedManyWithoutUserInput
-    receivedNotifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
-    surprises?: SurpriseUncheckedCreateNestedManyWithoutUserInput
-    timeCapsules?: TimeCapsuleUncheckedCreateNestedManyWithoutUserInput
-    timeCapsuleComments?: TimeCapsuleCommentUncheckedCreateNestedManyWithoutUserInput
-    chatMessages?: ChatMessageUncheckedCreateNestedManyWithoutUserInput
-  }
-
-  export type UserCreateOrConnectWithoutStoriesInput = {
-    where: UserWhereUniqueInput
-    create: XOR<UserCreateWithoutStoriesInput, UserUncheckedCreateWithoutStoriesInput>
-  }
-
-  export type ConnectionCreateWithoutStoriesInput = {
-    id?: string
-    connectionCode: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    user: UserCreateNestedOneWithoutConnectionsInput
-    pairedWith?: UserCreateNestedOneWithoutPairedWithInput
-    memories?: MemoryCreateNestedManyWithoutConnectionInput
-    notes?: NoteCreateNestedManyWithoutConnectionInput
-    specialDays?: SpecialDayCreateNestedManyWithoutConnectionInput
-    goals?: GoalCreateNestedManyWithoutConnectionInput
-    dreams?: DreamCreateNestedManyWithoutConnectionInput
-    tree?: TreeCreateNestedOneWithoutConnectionInput
-    surprises?: SurpriseCreateNestedManyWithoutConnectionInput
-    timeCapsules?: TimeCapsuleCreateNestedManyWithoutConnectionInput
-    chatMessages?: ChatMessageCreateNestedManyWithoutConnectionInput
-  }
-
-  export type ConnectionUncheckedCreateWithoutStoriesInput = {
-    id?: string
-    connectionCode: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    userId: string
-    pairedWithId?: string | null
-    memories?: MemoryUncheckedCreateNestedManyWithoutConnectionInput
-    notes?: NoteUncheckedCreateNestedManyWithoutConnectionInput
-    specialDays?: SpecialDayUncheckedCreateNestedManyWithoutConnectionInput
-    goals?: GoalUncheckedCreateNestedManyWithoutConnectionInput
-    dreams?: DreamUncheckedCreateNestedManyWithoutConnectionInput
-    tree?: TreeUncheckedCreateNestedOneWithoutConnectionInput
-    surprises?: SurpriseUncheckedCreateNestedManyWithoutConnectionInput
-    timeCapsules?: TimeCapsuleUncheckedCreateNestedManyWithoutConnectionInput
-    chatMessages?: ChatMessageUncheckedCreateNestedManyWithoutConnectionInput
-  }
-
-  export type ConnectionCreateOrConnectWithoutStoriesInput = {
-    where: ConnectionWhereUniqueInput
-    create: XOR<ConnectionCreateWithoutStoriesInput, ConnectionUncheckedCreateWithoutStoriesInput>
-  }
-
-  export type UserUpsertWithoutStoriesInput = {
-    update: XOR<UserUpdateWithoutStoriesInput, UserUncheckedUpdateWithoutStoriesInput>
-    create: XOR<UserCreateWithoutStoriesInput, UserUncheckedCreateWithoutStoriesInput>
-    where?: UserWhereInput
-  }
-
-  export type UserUpdateToOneWithWhereWithoutStoriesInput = {
-    where?: UserWhereInput
-    data: XOR<UserUpdateWithoutStoriesInput, UserUncheckedUpdateWithoutStoriesInput>
-  }
-
-  export type UserUpdateWithoutStoriesInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-    image?: NullableStringFieldUpdateOperationsInput | string | null
-    password?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
-    fcmToken?: NullableStringFieldUpdateOperationsInput | string | null
-    connections?: ConnectionUpdateManyWithoutUserNestedInput
-    pairedWith?: ConnectionUpdateManyWithoutPairedWithNestedInput
-    memories?: MemoryUpdateManyWithoutUserNestedInput
-    notes?: NoteUpdateManyWithoutAuthorNestedInput
-    specialDays?: SpecialDayUpdateManyWithoutUserNestedInput
-    goals?: GoalUpdateManyWithoutUserNestedInput
-    dreams?: DreamUpdateManyWithoutUserNestedInput
-    comments?: DreamCommentUpdateManyWithoutUserNestedInput
-    receivedNotifications?: NotificationUpdateManyWithoutUserNestedInput
-    surprises?: SurpriseUpdateManyWithoutUserNestedInput
-    timeCapsules?: TimeCapsuleUpdateManyWithoutUserNestedInput
-    timeCapsuleComments?: TimeCapsuleCommentUpdateManyWithoutUserNestedInput
-    chatMessages?: ChatMessageUpdateManyWithoutUserNestedInput
-  }
-
-  export type UserUncheckedUpdateWithoutStoriesInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    email?: StringFieldUpdateOperationsInput | string
-    name?: NullableStringFieldUpdateOperationsInput | string | null
-    image?: NullableStringFieldUpdateOperationsInput | string | null
-    password?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
-    fcmToken?: NullableStringFieldUpdateOperationsInput | string | null
-    connections?: ConnectionUncheckedUpdateManyWithoutUserNestedInput
-    pairedWith?: ConnectionUncheckedUpdateManyWithoutPairedWithNestedInput
-    memories?: MemoryUncheckedUpdateManyWithoutUserNestedInput
-    notes?: NoteUncheckedUpdateManyWithoutAuthorNestedInput
-    specialDays?: SpecialDayUncheckedUpdateManyWithoutUserNestedInput
-    goals?: GoalUncheckedUpdateManyWithoutUserNestedInput
-    dreams?: DreamUncheckedUpdateManyWithoutUserNestedInput
-    comments?: DreamCommentUncheckedUpdateManyWithoutUserNestedInput
-    receivedNotifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
-    surprises?: SurpriseUncheckedUpdateManyWithoutUserNestedInput
-    timeCapsules?: TimeCapsuleUncheckedUpdateManyWithoutUserNestedInput
-    timeCapsuleComments?: TimeCapsuleCommentUncheckedUpdateManyWithoutUserNestedInput
-    chatMessages?: ChatMessageUncheckedUpdateManyWithoutUserNestedInput
-  }
-
-  export type ConnectionUpsertWithoutStoriesInput = {
-    update: XOR<ConnectionUpdateWithoutStoriesInput, ConnectionUncheckedUpdateWithoutStoriesInput>
-    create: XOR<ConnectionCreateWithoutStoriesInput, ConnectionUncheckedCreateWithoutStoriesInput>
-    where?: ConnectionWhereInput
-  }
-
-  export type ConnectionUpdateToOneWithWhereWithoutStoriesInput = {
-    where?: ConnectionWhereInput
-    data: XOR<ConnectionUpdateWithoutStoriesInput, ConnectionUncheckedUpdateWithoutStoriesInput>
-  }
-
-  export type ConnectionUpdateWithoutStoriesInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    connectionCode?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutConnectionsNestedInput
-    pairedWith?: UserUpdateOneWithoutPairedWithNestedInput
-    memories?: MemoryUpdateManyWithoutConnectionNestedInput
-    notes?: NoteUpdateManyWithoutConnectionNestedInput
-    specialDays?: SpecialDayUpdateManyWithoutConnectionNestedInput
-    goals?: GoalUpdateManyWithoutConnectionNestedInput
-    dreams?: DreamUpdateManyWithoutConnectionNestedInput
-    tree?: TreeUpdateOneWithoutConnectionNestedInput
-    surprises?: SurpriseUpdateManyWithoutConnectionNestedInput
-    timeCapsules?: TimeCapsuleUpdateManyWithoutConnectionNestedInput
-    chatMessages?: ChatMessageUpdateManyWithoutConnectionNestedInput
-  }
-
-  export type ConnectionUncheckedUpdateWithoutStoriesInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    connectionCode?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    userId?: StringFieldUpdateOperationsInput | string
-    pairedWithId?: NullableStringFieldUpdateOperationsInput | string | null
-    memories?: MemoryUncheckedUpdateManyWithoutConnectionNestedInput
-    notes?: NoteUncheckedUpdateManyWithoutConnectionNestedInput
-    specialDays?: SpecialDayUncheckedUpdateManyWithoutConnectionNestedInput
-    goals?: GoalUncheckedUpdateManyWithoutConnectionNestedInput
-    dreams?: DreamUncheckedUpdateManyWithoutConnectionNestedInput
-    tree?: TreeUncheckedUpdateOneWithoutConnectionNestedInput
-    surprises?: SurpriseUncheckedUpdateManyWithoutConnectionNestedInput
-    timeCapsules?: TimeCapsuleUncheckedUpdateManyWithoutConnectionNestedInput
-    chatMessages?: ChatMessageUncheckedUpdateManyWithoutConnectionNestedInput
   }
 
   export type UserCreateWithoutSurprisesInput = {
@@ -29113,7 +27008,6 @@ export namespace Prisma {
     dreams?: DreamCreateNestedManyWithoutUserInput
     comments?: DreamCommentCreateNestedManyWithoutUserInput
     receivedNotifications?: NotificationCreateNestedManyWithoutUserInput
-    stories?: StoryCreateNestedManyWithoutUserInput
     timeCapsules?: TimeCapsuleCreateNestedManyWithoutUserInput
     timeCapsuleComments?: TimeCapsuleCommentCreateNestedManyWithoutUserInput
     chatMessages?: ChatMessageCreateNestedManyWithoutUserInput
@@ -29138,7 +27032,6 @@ export namespace Prisma {
     dreams?: DreamUncheckedCreateNestedManyWithoutUserInput
     comments?: DreamCommentUncheckedCreateNestedManyWithoutUserInput
     receivedNotifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
-    stories?: StoryUncheckedCreateNestedManyWithoutUserInput
     timeCapsules?: TimeCapsuleUncheckedCreateNestedManyWithoutUserInput
     timeCapsuleComments?: TimeCapsuleCommentUncheckedCreateNestedManyWithoutUserInput
     chatMessages?: ChatMessageUncheckedCreateNestedManyWithoutUserInput
@@ -29162,7 +27055,6 @@ export namespace Prisma {
     goals?: GoalCreateNestedManyWithoutConnectionInput
     dreams?: DreamCreateNestedManyWithoutConnectionInput
     tree?: TreeCreateNestedOneWithoutConnectionInput
-    stories?: StoryCreateNestedManyWithoutConnectionInput
     timeCapsules?: TimeCapsuleCreateNestedManyWithoutConnectionInput
     chatMessages?: ChatMessageCreateNestedManyWithoutConnectionInput
   }
@@ -29180,7 +27072,6 @@ export namespace Prisma {
     goals?: GoalUncheckedCreateNestedManyWithoutConnectionInput
     dreams?: DreamUncheckedCreateNestedManyWithoutConnectionInput
     tree?: TreeUncheckedCreateNestedOneWithoutConnectionInput
-    stories?: StoryUncheckedCreateNestedManyWithoutConnectionInput
     timeCapsules?: TimeCapsuleUncheckedCreateNestedManyWithoutConnectionInput
     chatMessages?: ChatMessageUncheckedCreateNestedManyWithoutConnectionInput
   }
@@ -29220,7 +27111,6 @@ export namespace Prisma {
     dreams?: DreamUpdateManyWithoutUserNestedInput
     comments?: DreamCommentUpdateManyWithoutUserNestedInput
     receivedNotifications?: NotificationUpdateManyWithoutUserNestedInput
-    stories?: StoryUpdateManyWithoutUserNestedInput
     timeCapsules?: TimeCapsuleUpdateManyWithoutUserNestedInput
     timeCapsuleComments?: TimeCapsuleCommentUpdateManyWithoutUserNestedInput
     chatMessages?: ChatMessageUpdateManyWithoutUserNestedInput
@@ -29245,7 +27135,6 @@ export namespace Prisma {
     dreams?: DreamUncheckedUpdateManyWithoutUserNestedInput
     comments?: DreamCommentUncheckedUpdateManyWithoutUserNestedInput
     receivedNotifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
-    stories?: StoryUncheckedUpdateManyWithoutUserNestedInput
     timeCapsules?: TimeCapsuleUncheckedUpdateManyWithoutUserNestedInput
     timeCapsuleComments?: TimeCapsuleCommentUncheckedUpdateManyWithoutUserNestedInput
     chatMessages?: ChatMessageUncheckedUpdateManyWithoutUserNestedInput
@@ -29275,7 +27164,6 @@ export namespace Prisma {
     goals?: GoalUpdateManyWithoutConnectionNestedInput
     dreams?: DreamUpdateManyWithoutConnectionNestedInput
     tree?: TreeUpdateOneWithoutConnectionNestedInput
-    stories?: StoryUpdateManyWithoutConnectionNestedInput
     timeCapsules?: TimeCapsuleUpdateManyWithoutConnectionNestedInput
     chatMessages?: ChatMessageUpdateManyWithoutConnectionNestedInput
   }
@@ -29293,7 +27181,6 @@ export namespace Prisma {
     goals?: GoalUncheckedUpdateManyWithoutConnectionNestedInput
     dreams?: DreamUncheckedUpdateManyWithoutConnectionNestedInput
     tree?: TreeUncheckedUpdateOneWithoutConnectionNestedInput
-    stories?: StoryUncheckedUpdateManyWithoutConnectionNestedInput
     timeCapsules?: TimeCapsuleUncheckedUpdateManyWithoutConnectionNestedInput
     chatMessages?: ChatMessageUncheckedUpdateManyWithoutConnectionNestedInput
   }
@@ -29318,7 +27205,6 @@ export namespace Prisma {
     comments?: DreamCommentCreateNestedManyWithoutUserInput
     receivedNotifications?: NotificationCreateNestedManyWithoutUserInput
     surprises?: SurpriseCreateNestedManyWithoutUserInput
-    stories?: StoryCreateNestedManyWithoutUserInput
     timeCapsuleComments?: TimeCapsuleCommentCreateNestedManyWithoutUserInput
     chatMessages?: ChatMessageCreateNestedManyWithoutUserInput
   }
@@ -29343,7 +27229,6 @@ export namespace Prisma {
     comments?: DreamCommentUncheckedCreateNestedManyWithoutUserInput
     receivedNotifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
     surprises?: SurpriseUncheckedCreateNestedManyWithoutUserInput
-    stories?: StoryUncheckedCreateNestedManyWithoutUserInput
     timeCapsuleComments?: TimeCapsuleCommentUncheckedCreateNestedManyWithoutUserInput
     chatMessages?: ChatMessageUncheckedCreateNestedManyWithoutUserInput
   }
@@ -29367,7 +27252,6 @@ export namespace Prisma {
     dreams?: DreamCreateNestedManyWithoutConnectionInput
     tree?: TreeCreateNestedOneWithoutConnectionInput
     surprises?: SurpriseCreateNestedManyWithoutConnectionInput
-    stories?: StoryCreateNestedManyWithoutConnectionInput
     chatMessages?: ChatMessageCreateNestedManyWithoutConnectionInput
   }
 
@@ -29385,7 +27269,6 @@ export namespace Prisma {
     dreams?: DreamUncheckedCreateNestedManyWithoutConnectionInput
     tree?: TreeUncheckedCreateNestedOneWithoutConnectionInput
     surprises?: SurpriseUncheckedCreateNestedManyWithoutConnectionInput
-    stories?: StoryUncheckedCreateNestedManyWithoutConnectionInput
     chatMessages?: ChatMessageUncheckedCreateNestedManyWithoutConnectionInput
   }
 
@@ -29451,7 +27334,6 @@ export namespace Prisma {
     comments?: DreamCommentUpdateManyWithoutUserNestedInput
     receivedNotifications?: NotificationUpdateManyWithoutUserNestedInput
     surprises?: SurpriseUpdateManyWithoutUserNestedInput
-    stories?: StoryUpdateManyWithoutUserNestedInput
     timeCapsuleComments?: TimeCapsuleCommentUpdateManyWithoutUserNestedInput
     chatMessages?: ChatMessageUpdateManyWithoutUserNestedInput
   }
@@ -29476,7 +27358,6 @@ export namespace Prisma {
     comments?: DreamCommentUncheckedUpdateManyWithoutUserNestedInput
     receivedNotifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
     surprises?: SurpriseUncheckedUpdateManyWithoutUserNestedInput
-    stories?: StoryUncheckedUpdateManyWithoutUserNestedInput
     timeCapsuleComments?: TimeCapsuleCommentUncheckedUpdateManyWithoutUserNestedInput
     chatMessages?: ChatMessageUncheckedUpdateManyWithoutUserNestedInput
   }
@@ -29506,7 +27387,6 @@ export namespace Prisma {
     dreams?: DreamUpdateManyWithoutConnectionNestedInput
     tree?: TreeUpdateOneWithoutConnectionNestedInput
     surprises?: SurpriseUpdateManyWithoutConnectionNestedInput
-    stories?: StoryUpdateManyWithoutConnectionNestedInput
     chatMessages?: ChatMessageUpdateManyWithoutConnectionNestedInput
   }
 
@@ -29524,7 +27404,6 @@ export namespace Prisma {
     dreams?: DreamUncheckedUpdateManyWithoutConnectionNestedInput
     tree?: TreeUncheckedUpdateOneWithoutConnectionNestedInput
     surprises?: SurpriseUncheckedUpdateManyWithoutConnectionNestedInput
-    stories?: StoryUncheckedUpdateManyWithoutConnectionNestedInput
     chatMessages?: ChatMessageUncheckedUpdateManyWithoutConnectionNestedInput
   }
 
@@ -29599,7 +27478,6 @@ export namespace Prisma {
     comments?: DreamCommentCreateNestedManyWithoutUserInput
     receivedNotifications?: NotificationCreateNestedManyWithoutUserInput
     surprises?: SurpriseCreateNestedManyWithoutUserInput
-    stories?: StoryCreateNestedManyWithoutUserInput
     timeCapsules?: TimeCapsuleCreateNestedManyWithoutUserInput
     chatMessages?: ChatMessageCreateNestedManyWithoutUserInput
   }
@@ -29624,7 +27502,6 @@ export namespace Prisma {
     comments?: DreamCommentUncheckedCreateNestedManyWithoutUserInput
     receivedNotifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
     surprises?: SurpriseUncheckedCreateNestedManyWithoutUserInput
-    stories?: StoryUncheckedCreateNestedManyWithoutUserInput
     timeCapsules?: TimeCapsuleUncheckedCreateNestedManyWithoutUserInput
     chatMessages?: ChatMessageUncheckedCreateNestedManyWithoutUserInput
   }
@@ -29706,7 +27583,6 @@ export namespace Prisma {
     comments?: DreamCommentUpdateManyWithoutUserNestedInput
     receivedNotifications?: NotificationUpdateManyWithoutUserNestedInput
     surprises?: SurpriseUpdateManyWithoutUserNestedInput
-    stories?: StoryUpdateManyWithoutUserNestedInput
     timeCapsules?: TimeCapsuleUpdateManyWithoutUserNestedInput
     chatMessages?: ChatMessageUpdateManyWithoutUserNestedInput
   }
@@ -29731,7 +27607,6 @@ export namespace Prisma {
     comments?: DreamCommentUncheckedUpdateManyWithoutUserNestedInput
     receivedNotifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
     surprises?: SurpriseUncheckedUpdateManyWithoutUserNestedInput
-    stories?: StoryUncheckedUpdateManyWithoutUserNestedInput
     timeCapsules?: TimeCapsuleUncheckedUpdateManyWithoutUserNestedInput
     chatMessages?: ChatMessageUncheckedUpdateManyWithoutUserNestedInput
   }
@@ -29756,7 +27631,6 @@ export namespace Prisma {
     comments?: DreamCommentCreateNestedManyWithoutUserInput
     receivedNotifications?: NotificationCreateNestedManyWithoutUserInput
     surprises?: SurpriseCreateNestedManyWithoutUserInput
-    stories?: StoryCreateNestedManyWithoutUserInput
     timeCapsules?: TimeCapsuleCreateNestedManyWithoutUserInput
     timeCapsuleComments?: TimeCapsuleCommentCreateNestedManyWithoutUserInput
   }
@@ -29781,7 +27655,6 @@ export namespace Prisma {
     comments?: DreamCommentUncheckedCreateNestedManyWithoutUserInput
     receivedNotifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
     surprises?: SurpriseUncheckedCreateNestedManyWithoutUserInput
-    stories?: StoryUncheckedCreateNestedManyWithoutUserInput
     timeCapsules?: TimeCapsuleUncheckedCreateNestedManyWithoutUserInput
     timeCapsuleComments?: TimeCapsuleCommentUncheckedCreateNestedManyWithoutUserInput
   }
@@ -29805,7 +27678,6 @@ export namespace Prisma {
     dreams?: DreamCreateNestedManyWithoutConnectionInput
     tree?: TreeCreateNestedOneWithoutConnectionInput
     surprises?: SurpriseCreateNestedManyWithoutConnectionInput
-    stories?: StoryCreateNestedManyWithoutConnectionInput
     timeCapsules?: TimeCapsuleCreateNestedManyWithoutConnectionInput
   }
 
@@ -29823,7 +27695,6 @@ export namespace Prisma {
     dreams?: DreamUncheckedCreateNestedManyWithoutConnectionInput
     tree?: TreeUncheckedCreateNestedOneWithoutConnectionInput
     surprises?: SurpriseUncheckedCreateNestedManyWithoutConnectionInput
-    stories?: StoryUncheckedCreateNestedManyWithoutConnectionInput
     timeCapsules?: TimeCapsuleUncheckedCreateNestedManyWithoutConnectionInput
   }
 
@@ -29863,7 +27734,6 @@ export namespace Prisma {
     comments?: DreamCommentUpdateManyWithoutUserNestedInput
     receivedNotifications?: NotificationUpdateManyWithoutUserNestedInput
     surprises?: SurpriseUpdateManyWithoutUserNestedInput
-    stories?: StoryUpdateManyWithoutUserNestedInput
     timeCapsules?: TimeCapsuleUpdateManyWithoutUserNestedInput
     timeCapsuleComments?: TimeCapsuleCommentUpdateManyWithoutUserNestedInput
   }
@@ -29888,7 +27758,6 @@ export namespace Prisma {
     comments?: DreamCommentUncheckedUpdateManyWithoutUserNestedInput
     receivedNotifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
     surprises?: SurpriseUncheckedUpdateManyWithoutUserNestedInput
-    stories?: StoryUncheckedUpdateManyWithoutUserNestedInput
     timeCapsules?: TimeCapsuleUncheckedUpdateManyWithoutUserNestedInput
     timeCapsuleComments?: TimeCapsuleCommentUncheckedUpdateManyWithoutUserNestedInput
   }
@@ -29918,7 +27787,6 @@ export namespace Prisma {
     dreams?: DreamUpdateManyWithoutConnectionNestedInput
     tree?: TreeUpdateOneWithoutConnectionNestedInput
     surprises?: SurpriseUpdateManyWithoutConnectionNestedInput
-    stories?: StoryUpdateManyWithoutConnectionNestedInput
     timeCapsules?: TimeCapsuleUpdateManyWithoutConnectionNestedInput
   }
 
@@ -29936,7 +27804,6 @@ export namespace Prisma {
     dreams?: DreamUncheckedUpdateManyWithoutConnectionNestedInput
     tree?: TreeUncheckedUpdateOneWithoutConnectionNestedInput
     surprises?: SurpriseUncheckedUpdateManyWithoutConnectionNestedInput
-    stories?: StoryUncheckedUpdateManyWithoutConnectionNestedInput
     timeCapsules?: TimeCapsuleUncheckedUpdateManyWithoutConnectionNestedInput
   }
 
@@ -30046,20 +27913,6 @@ export namespace Prisma {
     connectionId: string
   }
 
-  export type StoryCreateManyUserInput = {
-    id?: string
-    imageUrl?: string | null
-    videoUrl?: string | null
-    textContent?: string | null
-    bgColor?: string | null
-    createdAt?: Date | string
-    expiresAt: Date | string
-    isViewed?: boolean
-    viewedAt?: Date | string | null
-    reactions?: NullableJsonNullValueInput | InputJsonValue
-    connectionId: string
-  }
-
   export type TimeCapsuleCreateManyUserInput = {
     id?: string
     title: string
@@ -30104,7 +27957,6 @@ export namespace Prisma {
     dreams?: DreamUpdateManyWithoutConnectionNestedInput
     tree?: TreeUpdateOneWithoutConnectionNestedInput
     surprises?: SurpriseUpdateManyWithoutConnectionNestedInput
-    stories?: StoryUpdateManyWithoutConnectionNestedInput
     timeCapsules?: TimeCapsuleUpdateManyWithoutConnectionNestedInput
     chatMessages?: ChatMessageUpdateManyWithoutConnectionNestedInput
   }
@@ -30122,7 +27974,6 @@ export namespace Prisma {
     dreams?: DreamUncheckedUpdateManyWithoutConnectionNestedInput
     tree?: TreeUncheckedUpdateOneWithoutConnectionNestedInput
     surprises?: SurpriseUncheckedUpdateManyWithoutConnectionNestedInput
-    stories?: StoryUncheckedUpdateManyWithoutConnectionNestedInput
     timeCapsules?: TimeCapsuleUncheckedUpdateManyWithoutConnectionNestedInput
     chatMessages?: ChatMessageUncheckedUpdateManyWithoutConnectionNestedInput
   }
@@ -30148,7 +27999,6 @@ export namespace Prisma {
     dreams?: DreamUpdateManyWithoutConnectionNestedInput
     tree?: TreeUpdateOneWithoutConnectionNestedInput
     surprises?: SurpriseUpdateManyWithoutConnectionNestedInput
-    stories?: StoryUpdateManyWithoutConnectionNestedInput
     timeCapsules?: TimeCapsuleUpdateManyWithoutConnectionNestedInput
     chatMessages?: ChatMessageUpdateManyWithoutConnectionNestedInput
   }
@@ -30166,7 +28016,6 @@ export namespace Prisma {
     dreams?: DreamUncheckedUpdateManyWithoutConnectionNestedInput
     tree?: TreeUncheckedUpdateOneWithoutConnectionNestedInput
     surprises?: SurpriseUncheckedUpdateManyWithoutConnectionNestedInput
-    stories?: StoryUncheckedUpdateManyWithoutConnectionNestedInput
     timeCapsules?: TimeCapsuleUncheckedUpdateManyWithoutConnectionNestedInput
     chatMessages?: ChatMessageUncheckedUpdateManyWithoutConnectionNestedInput
   }
@@ -30451,48 +28300,6 @@ export namespace Prisma {
     connectionId?: StringFieldUpdateOperationsInput | string
   }
 
-  export type StoryUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    videoUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    textContent?: NullableStringFieldUpdateOperationsInput | string | null
-    bgColor?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    isViewed?: BoolFieldUpdateOperationsInput | boolean
-    viewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    reactions?: NullableJsonNullValueInput | InputJsonValue
-    connection?: ConnectionUpdateOneRequiredWithoutStoriesNestedInput
-  }
-
-  export type StoryUncheckedUpdateWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    videoUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    textContent?: NullableStringFieldUpdateOperationsInput | string | null
-    bgColor?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    isViewed?: BoolFieldUpdateOperationsInput | boolean
-    viewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    reactions?: NullableJsonNullValueInput | InputJsonValue
-    connectionId?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type StoryUncheckedUpdateManyWithoutUserInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    videoUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    textContent?: NullableStringFieldUpdateOperationsInput | string | null
-    bgColor?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    isViewed?: BoolFieldUpdateOperationsInput | boolean
-    viewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    reactions?: NullableJsonNullValueInput | InputJsonValue
-    connectionId?: StringFieldUpdateOperationsInput | string
-  }
-
   export type TimeCapsuleUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: StringFieldUpdateOperationsInput | string
@@ -30656,20 +28463,6 @@ export namespace Prisma {
     createdAt?: Date | string
     isSeenByAuthor?: boolean
     isSeenByPartner?: boolean
-    userId: string
-  }
-
-  export type StoryCreateManyConnectionInput = {
-    id?: string
-    imageUrl?: string | null
-    videoUrl?: string | null
-    textContent?: string | null
-    bgColor?: string | null
-    createdAt?: Date | string
-    expiresAt: Date | string
-    isViewed?: boolean
-    viewedAt?: Date | string | null
-    reactions?: NullableJsonNullValueInput | InputJsonValue
     userId: string
   }
 
@@ -30908,48 +28701,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     isSeenByAuthor?: BoolFieldUpdateOperationsInput | boolean
     isSeenByPartner?: BoolFieldUpdateOperationsInput | boolean
-    userId?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type StoryUpdateWithoutConnectionInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    videoUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    textContent?: NullableStringFieldUpdateOperationsInput | string | null
-    bgColor?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    isViewed?: BoolFieldUpdateOperationsInput | boolean
-    viewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    reactions?: NullableJsonNullValueInput | InputJsonValue
-    user?: UserUpdateOneRequiredWithoutStoriesNestedInput
-  }
-
-  export type StoryUncheckedUpdateWithoutConnectionInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    videoUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    textContent?: NullableStringFieldUpdateOperationsInput | string | null
-    bgColor?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    isViewed?: BoolFieldUpdateOperationsInput | boolean
-    viewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    reactions?: NullableJsonNullValueInput | InputJsonValue
-    userId?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type StoryUncheckedUpdateManyWithoutConnectionInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    videoUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    textContent?: NullableStringFieldUpdateOperationsInput | string | null
-    bgColor?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    expiresAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    isViewed?: BoolFieldUpdateOperationsInput | boolean
-    viewedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    reactions?: NullableJsonNullValueInput | InputJsonValue
     userId?: StringFieldUpdateOperationsInput | string
   }
 

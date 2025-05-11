@@ -1,28 +1,35 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { prisma } from '@/app/lib/prisma';
+import { authOptions } from '@/app/auth/options';
 
 // Admin kontrolü fonksiyonu
 async function isAdmin(request: NextRequest) {
-  const session = await getServerSession();
-  
-  if (!session?.user?.email) {
+  try {
+    const session = await getServerSession(authOptions);
+    
+    if (!session?.user?.email) {
+      return false;
+    }
+    
+    const user = await prisma.user.findUnique({
+      where: { email: session.user.email }
+    });
+    
+    return user?.role === 'ADMIN';
+  } catch (error) {
+    console.error('Admin kontrolü sırasında hata:', error);
     return false;
   }
-  
-  const user = await prisma.user.findUnique({
-    where: { email: session.user.email }
-  });
-  
-  return user?.role === 'ADMIN';
 }
 
+// Next.js App Router API route - POST handler
 export async function POST(
   request: NextRequest,
-  { params }: { params: { userId: string } }
+  context: { params: { userId: string } }
 ) {
   try {
-    const { userId } = params;
+    const { userId } = context.params;
     
     // Admin kontrolü
     const adminCheck = await isAdmin(request);
