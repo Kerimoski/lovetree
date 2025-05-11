@@ -52,12 +52,8 @@ const nextConfig = {
       }
     ],
   },
-  output: 'standalone', // Netlify için optimize edilmiş çıktı
-  swcMinify: true,
-  reactStrictMode: true,
-  // Netlify için yapılandırma
-  trailingSlash: true,
-  poweredByHeader: false,
+  // Netlify için minimum gerekli ayarlar
+  output: 'standalone',
 };
 
 module.exports = nextConfig;
