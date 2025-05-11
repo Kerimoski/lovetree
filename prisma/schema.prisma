@@ -1,0 +1,312 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Kullanıcı modeli
+model User {
+  id            String         @id @default(cuid())
+  email         String         @unique
+  name          String?
+  image         String?
+  password      String?        // Şifre (hash olarak saklanacak)
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  role          UserRole       @default(USER)  // Kullanıcı rolü
+  fcmToken      String?        // Firebase Cloud Messaging token
+  connections   Connection[]   @relation("UserConnections")
+  pairedWith    Connection[]   @relation("PairedWith")
+  memories      Memory[]
+  notes         Note[]
+  specialDays   SpecialDay[]
+  goals         Goal[]
+  dreams        Dream[]
+  comments      DreamComment[]
+  receivedNotifications Notification[] @relation("ReceivedNotifications")
+  surprises     Surprise[]
+  timeCapsules  TimeCapsule[]  @relation("UserTimeCapsules")
+  timeCapsuleComments TimeCapsuleComment[] @relation("UserTimeCapsuleComments")
+  chatMessages  ChatMessage[]  @relation("UserChatMessages")
+}
+
+// Kullanıcı rolleri
+enum UserRole {
+  USER
+  ADMIN
+}
+
+// Bildirim modeli
+model Notification {
+  id            String      @id @default(cuid())
+  title         String
+  body          String
+  type          NotificationType
+  isRead        Boolean     @default(false)
+  data          Json?       // Ekstra veri
+  createdAt     DateTime    @default(now())
+  sentAt        DateTime?   // Gönderilme tarihi
+  
+  // İlişkiler
+  userId        String
+  user          User        @relation("ReceivedNotifications", fields: [userId], references: [id], onDelete: Cascade)
+}
+
+// Bildirim tipleri
+enum NotificationType {
+  SYSTEM
+  SPECIAL_DAY
+  NEW_MEMORY
+  NEW_NOTE
+  PROMO
+  APP_UPDATE
+}
+
+// Bağlantı modeli - iki kullanıcı arasındaki bağı temsil eder
+model Connection {
+  id              String    @id @default(cuid())
+  connectionCode  String    @unique
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  
+  // İlişki sahipleri
+  userId          String
+  user            User      @relation("UserConnections", fields: [userId], references: [id], onDelete: Cascade)
+  
+  pairedWithId    String?
+  pairedWith      User?     @relation("PairedWith", fields: [pairedWithId], references: [id], onDelete: Cascade)
+  
+  // Bağlantı verileri
+  memories        Memory[]
+  notes           Note[]
+  specialDays     SpecialDay[]
+  goals           Goal[]
+  dreams          Dream[]
+  tree            Tree?
+  surprises       Surprise[]
+  timeCapsules    TimeCapsule[] @relation("ConnectionTimeCapsules")
+  chatMessages    ChatMessage[] @relation("ConnectionChatMessages")
+}
+
+// Ağaç modeli - ilişkinin büyüyen ağacını temsil eder
+model Tree {
+  id            String      @id @default(cuid())
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  growthLevel   Int         @default(1)
+  lastWatered   DateTime    @default(now())
+  growthXP      Int         @default(0)  // Toplam birikmiş XP puanı
+  
+  // Bağlantı ile ilişki
+  connectionId  String      @unique
+  connection    Connection  @relation(fields: [connectionId], references: [id], onDelete: Cascade)
+}
+
+// Anı modeli
+model Memory {
+  id            String      @id @default(cuid())
+  title         String
+  description   String
+  imageUrl      String?
+  date          DateTime
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  
+  // İlişkiler
+  userId        String
+  user          User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  connectionId  String
+  connection    Connection  @relation(fields: [connectionId], references: [id], onDelete: Cascade)
+}
+
+// Not modeli - kullanıcıların birbirine gönderdiği notlar
+model Note {
+  id            String      @id @default(cuid())
+  title         String
+  content       String
+  isTemporary   Boolean     @default(false)
+  expiresAt     DateTime?
+  rating        Int?        // 1-5 arası puanlama (5 en iyi, 1 en kötü)
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  
+  // İlişkiler
+  authorId      String
+  author        User        @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  
+  connectionId  String
+  connection    Connection  @relation(fields: [connectionId], references: [id], onDelete: Cascade)
+}
+
+// Özel gün modeli
+model SpecialDay {
+  id                String      @id @default(cuid())
+  title             String
+  description       String?
+  date              DateTime
+  isRecurring       Boolean     @default(true)
+  createdAt         DateTime    @default(now())
+  updatedAt         DateTime    @updatedAt
+  isConfirmed       Boolean     @default(false)   // Eşin katılım durumu
+  confirmedAt       DateTime?   // Eşin ne zaman katıldığı
+  confirmedById     String?     // Katılım sağlayan kişinin ID'si
+  
+  // İlişkiler
+  userId            String
+  user              User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  connectionId      String
+  connection        Connection  @relation(fields: [connectionId], references: [id], onDelete: Cascade)
+}
+
+// Hedef modeli
+model Goal {
+  id            String      @id @default(cuid())
+  title         String
+  description   String?
+  isCompleted   Boolean     @default(false)
+  dueDate       DateTime?
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  
+  // İlişkiler
+  userId        String
+  user          User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  connectionId  String
+  connection    Connection  @relation(fields: [connectionId], references: [id], onDelete: Cascade)
+}
+
+// Hayal Panosu modeli
+model Dream {
+  id            String      @id @default(cuid())
+  title         String
+  description   String
+  imageUrl      String?
+  linkUrl       String?
+  category      DreamCategory @default(OTHER)
+  position      Int         @default(0)
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  
+  // İlişkiler
+  userId        String
+  user          User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  connectionId  String
+  connection    Connection  @relation(fields: [connectionId], references: [id], onDelete: Cascade)
+  
+  // Yorumlar
+  comments      DreamComment[]
+}
+
+// Hayal kategorileri
+enum DreamCategory {
+  TRAVEL
+  HOME
+  FAMILY
+  CAREER
+  ADVENTURE
+  RELATIONSHIP
+  FINANCE
+  HEALTH
+  OTHER
+}
+
+// Hayal yorumları modeli
+model DreamComment {
+  id            String      @id @default(cuid())
+  content       String
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  
+  // İlişkiler  
+  dreamId       String
+  dream         Dream       @relation(fields: [dreamId], references: [id], onDelete: Cascade)
+  
+  userId        String
+  user          User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+// Sürpriz modeli
+model Surprise {
+  id            String      @id @default(cuid())
+  imageUrl      String
+  message       String?
+  createdAt     DateTime    @default(now())
+  isSeenByAuthor Boolean    @default(false)
+  isSeenByPartner Boolean   @default(false)
+  
+  // İlişkiler
+  userId        String
+  user          User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  connectionId  String
+  connection    Connection  @relation(fields: [connectionId], references: [id], onDelete: Cascade)
+}
+
+// Zaman Kapsülü modeli
+model TimeCapsule {
+  id            String      @id @default(cuid())
+  title         String
+  description   String
+  imageUrl      String?
+  content       String
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  openDate      DateTime    // Kapsülün açılacağı tarih
+  isOpened      Boolean     @default(false)
+  openedAt      DateTime?   // Kapsülün açıldığı tarih
+  
+  // İlişkiler
+  userId        String
+  user          User        @relation("UserTimeCapsules", fields: [userId], references: [id], onDelete: Cascade)
+  
+  connectionId  String
+  connection    Connection  @relation("ConnectionTimeCapsules", fields: [connectionId], references: [id], onDelete: Cascade)
+  
+  // Yorumlar
+  comments      TimeCapsuleComment[]
+}
+
+// Zaman Kapsülü yorumları modeli
+model TimeCapsuleComment {
+  id            String      @id @default(cuid())
+  content       String
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  
+  // İlişkiler  
+  timeCapsuleId String
+  timeCapsule   TimeCapsule @relation(fields: [timeCapsuleId], references: [id], onDelete: Cascade)
+  
+  userId        String
+  user          User        @relation("UserTimeCapsuleComments", fields: [userId], references: [id], onDelete: Cascade)
+}
+
+// Chat mesajları modeli
+model ChatMessage {
+  id            String      @id @default(cuid())
+  content       String
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  isRead        Boolean     @default(false)
+  
+  // İlişkiler
+  userId        String
+  user          User        @relation("UserChatMessages", fields: [userId], references: [id], onDelete: Cascade)
+  
+  connectionId  String
+  connection    Connection  @relation("ConnectionChatMessages", fields: [connectionId], references: [id], onDelete: Cascade)
+}

@@ -1,0 +1,51 @@
+rules_version = '2';
+
+/**
+ * Firestore Güvenlik Kuralları
+ * 
+ * NOT: Mesajlaşma sistemi şu anda devre dışı bırakılmıştır.
+ * Bu kurallar, ileride mesajlaşma sistemi tekrar etkinleştirildiğinde
+ * kullanılacaktır.
+ */
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Kimlik doğrulama gerektiren genel kural
+    match /{document=**} {
+      allow read, write: if false; // Varsayılan olarak erişimi reddet
+    }
+    
+    // Kullanıcı mesajlarına erişim kuralları
+    match /mailMessages/{messageId} {
+      // Mesajları oku
+      allow read: if isSignedIn() &&
+                 (resource.data.senderId == request.auth.uid || 
+                  resource.data.receiverId == request.auth.uid);
+      
+      // Yeni mesaj ekle
+      allow create: if isSignedIn() &&
+                    request.resource.data.senderId == request.auth.uid;
+      
+      // Mesaj güncelle (sadece okundu bilgisi)
+      allow update: if isSignedIn() &&
+                    (resource.data.senderId == request.auth.uid || 
+                     resource.data.receiverId == request.auth.uid) &&
+                    onlyIsReadFieldChanged();
+      
+      // Mesaj silme - kullanıcı sadece kendi gönderdiği mesajları silebilir
+      allow delete: if isSignedIn() &&
+                    resource.data.senderId == request.auth.uid;
+    }
+    
+    // Yardımcı fonksiyonlar
+    
+    // Kullanıcı giriş yapmış mı?
+    function isSignedIn() {
+      return request.auth != null;
+    }
+    
+    // Sadece isRead alanı değişti mi?
+    function onlyIsReadFieldChanged() {
+      return request.resource.data.diff(resource.data).affectedKeys().hasOnly(['isRead']);
+    }
+  }
+} 
