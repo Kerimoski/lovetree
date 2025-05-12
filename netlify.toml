@@ -1,19 +1,22 @@
-[build]
+   [build]
   command = "npm run build"
-  publish = ".next"
-  
-[[plugins]]
-  package = "@netlify/plugin-nextjs"
-
+     publish = ".next"
+   
+   [[plugins]]
+     package = "@netlify/plugin-nextjs"
+   
 [[headers]]
   for = "/*"
   [headers.values]
-    Content-Security-Policy = "style-src 'self' 'unsafe-inline'; img-src 'self' data: https://firebasestorage.googleapis.com https://*.googleusercontent.com https://*.googleapis.com https://i.imgur.com https://*.unsplash.com https://*.pexels.com"
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Content-Security-Policy = "default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; img-src 'self' data: https://*.googleapis.com https://*.googleusercontent.com https://*.unsplash.com https://*.pexels.com https://i.imgur.com https://firebasestorage.googleapis.com; font-src 'self' data:;"
 
-[build.environment]
-  DATABASE_URL = "postgresql://postgres:xthZEILEuEwybAIgKHDkQImHeueCbAVk@yamanote.proxy.rlwy.net:28084/railway"
-  NEXTAUTH_URL = "https://jazzy-salamander-509fc3.netlify.app"
-  NEXTAUTH_SECRET = "rastgelebirdeger123456789"
+   [build.environment]
+     DATABASE_URL = "postgresql://postgres:xthZEILEuEwybAIgKHDkQImHeueCbAVk@yamanote.proxy.rlwy.net:28084/railway"
+     NEXTAUTH_URL = "https://jazzy-salamander-509fc3.netlify.app"
+     NEXTAUTH_SECRET = "rastgelebirdeger123456789"
   NODE_VERSION = "18.18.0"
   NEXT_TELEMETRY_DISABLED = "1"
   NEXT_PUBLIC_SITE_URL = "https://jazzy-salamander-509fc3.netlify.app"

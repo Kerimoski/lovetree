@@ -7,16 +7,16 @@ import { authOptions } from '@/app/auth/options';
 async function isAdmin(request: NextRequest) {
   try {
     const session = await getServerSession(authOptions);
-    
-    if (!session?.user?.email) {
-      return false;
-    }
-    
-    const user = await prisma.user.findUnique({
-      where: { email: session.user.email }
-    });
-    
-    return user?.role === 'ADMIN';
+  
+  if (!session?.user?.email) {
+    return false;
+  }
+  
+  const user = await prisma.user.findUnique({
+    where: { email: session.user.email }
+  });
+  
+  return user?.role === 'ADMIN';
   } catch (error) {
     console.error('Admin kontrolü sırasında hata:', error);
     return false;

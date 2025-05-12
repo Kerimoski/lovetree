@@ -1,13 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Şu an dosyaları uploads klasöründe lokal olarak saklıyoruz
-  outputFileTracingIncludes: {
-    '/*': ['./public/uploads/**/*'],
-  },
+  // CSS ayarları
+  optimizeFonts: false,
   
-  // Yüklenen görsellerin görüntülenmesi için Content Security Policy'yi yapılandırma
+  // Yüklenen görsellerin görüntülenmesi için yapılandırma
   images: {
-    unoptimized: true, // Netlify için gerekli
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: 'http',
@@ -52,8 +50,11 @@ const nextConfig = {
       }
     ],
   },
-  // Netlify için minimum gerekli ayarlar
   output: 'standalone',
+  swcMinify: true,
+  reactStrictMode: true,
+  trailingSlash: true,
+  poweredByHeader: false,
 };
 
 module.exports = nextConfig;
